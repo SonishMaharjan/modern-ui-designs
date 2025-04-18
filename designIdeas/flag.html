@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>German Flag – CSS Effects</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: #111;
+        color: white;
+        font-family: sans-serif;
+      }
+      h2 {
+        text-align: center;
+        margin-top: 60px;
+      }
+      .section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 60px 20px;
+      }
+      .flag {
+        width: 300px;
+        height: 180px;
+        display: flex;
+        flex-direction: column;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      }
+      .stripe {
+        flex: 1;
+      }
+      .black {
+        background: black;
+      }
+      .red {
+        background: red;
+      }
+      .gold {
+        background: gold;
+      }
+
+      /* 1. Glassmorphism */
+      .glass-container {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 20px;
+        border-radius: 20px;
+      }
+
+      /* 2. Animated Gradient */
+      .animated-gradient .black {
+        background: linear-gradient(270deg, black, #333);
+        background-size: 200% 200%;
+        animation: gradientMove 6s ease infinite;
+      }
+      .animated-gradient .red {
+        background: linear-gradient(270deg, red, #ff5e5e);
+        background-size: 200% 200%;
+        animation: gradientMove 6s ease infinite;
+      }
+      .animated-gradient .gold {
+        background: linear-gradient(270deg, gold, #ffdd55);
+        background-size: 200% 200%;
+        animation: gradientMove 6s ease infinite;
+      }
+      @keyframes gradientMove {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* 3. Shiny Effect */
+      .shiny-flag {
+        position: relative;
+        overflow: hidden;
+      }
+      .shiny-flag::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(
+          120deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        animation: shine 2.5s infinite;
+      }
+      @keyframes shine {
+        0% {
+          left: -100%;
+        }
+        100% {
+          left: 150%;
+        }
+      }
+
+      /* 4. Neumorphism */
+      .neu-container {
+        background: #e0e0e0;
+        box-shadow: 10px 10px 20px #bebebe, -10px -10px 20px #ffffff;
+        border-radius: 20px;
+        padding: 20px;
+      }
+
+      /* 5. Particles (with fake floating dot) */
+      .particles-container {
+        position: relative;
+      }
+      .particles-container::before {
+        content: "";
+        position: absolute;
+        top: 20%;
+        left: 40%;
+        width: 6px;
+        height: 6px;
+        background: white;
+        border-radius: 50%;
+        animation: float 2s ease-in-out infinite;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+        50% {
+          transform: translateY(-10px);
+          opacity: 0.6;
+        }
+      }
+
+      /* 6. Wavy Clip-path */
+      .wavy-container {
+        clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+        border: 2px solid white;
+      }
+
+      /* 7. 3D Hover Tilt */
+      .card-container {
+        transition: transform 0.3s;
+      }
+      .card-container:hover {
+        transform: rotateX(6deg) rotateY(6deg);
+      }
+
+      /* 8. Glow */
+      .glow-container {
+        box-shadow: 0 0 20px 5px #f0f, 0 0 60px 10px #f0f;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>1. Glassmorphism</h2>
+    <div class="section">
+      <div class="glass-container">
+        <div class="flag">
+          <div class="stripe black"></div>
+          <div class="stripe red"></div>
+          <div class="stripe gold"></div>
+        </div>
+      </div>
+    </div>
+
+    <h2>2. Animated Gradient</h2>
+    <div class="section">
+      <div class="flag animated-gradient">
+        <div class="stripe black"></div>
+        <div class="stripe red"></div>
+        <div class="stripe gold"></div>
+      </div>
+    </div>
+
+    <h2>3. Shiny Effect</h2>
+    <div class="section">
+      <div class="flag shiny-flag">
+        <div class="stripe black"></div>
+        <div class="stripe red"></div>
+        <div class="stripe gold"></div>
+      </div>
+    </div>
+
+    <h2>4. Neumorphism</h2>
+    <div class="section">
+      <div class="neu-container">
+        <div class="flag">
+          <div class="stripe black"></div>
+          <div class="stripe red"></div>
+          <div class="stripe gold"></div>
+        </div>
+      </div>
+    </div>
+
+    <h2>5. Particles Floating</h2>
+    <div class="section">
+      <div class="particles-container">
+        <div class="flag">
+          <div class="stripe black"></div>
+          <div class="stripe red"></div>
+          <div class="stripe gold"></div>
+        </div>
+      </div>
+    </div>
+
+    <h2>6. Wavy Bottom Clip</h2>
+    <div class="section">
+      <div class="wavy-container">
+        <div class="flag">
+          <div class="stripe black"></div>
+          <div class="stripe red"></div>
+          <div class="stripe gold"></div>
+        </div>
+      </div>
+    </div>
+
+    <h2>7. 3D Hover Tilt</h2>
+    <div class="section">
+      <div class="card-container">
+        <div class="flag">
+          <div class="stripe black"></div>
+          <div class="stripe red"></div>
+          <div class="stripe gold"></div>
+        </div>
+      </div>
+    </div>
+
+    <h2>8. Neon Glow</h2>
+    <div class="section">
+      <div class="glow-container">
+        <div class="flag">
+          <div class="stripe black"></div>
+          <div class="stripe red"></div>
+          <div class="stripe gold"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
