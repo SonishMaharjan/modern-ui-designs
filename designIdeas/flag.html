@@ -9,7 +9,7 @@
       }
       body {
         margin: 0;
-        background: #111;
+        background: white;
         color: white;
         font-family: sans-serif;
       }
@@ -164,6 +164,174 @@
       .glow-container {
         box-shadow: 0 0 20px 5px #f0f, 0 0 60px 10px #f0f;
       }
+
+      body {
+        background: #111;
+        color: white;
+        font-family: sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3rem;
+        padding: 3rem;
+      }
+      h2 {
+        text-align: center;
+      }
+      .flag {
+        width: 300px;
+        height: 180px;
+        border: 2px solid white;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+      .stripe {
+        flex: 1;
+      }
+      .black {
+        background: black;
+      }
+      .red {
+        background: red;
+      }
+      .gold {
+        background: gold;
+      }
+
+      /* Pulse animation */
+      .pulse {
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+
+      /* Glass effect */
+      .glass {
+        backdrop-filter: blur(5px);
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+      }
+
+      /* Shiny sweep */
+      .shiny {
+        position: relative;
+        overflow: hidden;
+      }
+      .shiny::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -75%;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(
+          120deg,
+          rgba(255, 255, 255, 0.3),
+          rgba(255, 255, 255, 0)
+        );
+        animation: shine 2s infinite;
+      }
+      @keyframes shine {
+        0% {
+          left: -75%;
+        }
+        100% {
+          left: 125%;
+        }
+      }
+
+      /* Ripple flag */
+      .ripple {
+        background-size: 100% 300%;
+        animation: rippleMove 4s infinite linear;
+      }
+      @keyframes rippleMove {
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-2px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+
+      /* Torn flag */
+      .torn {
+        clip-path: polygon(
+          0% 0%,
+          100% 0%,
+          100% 90%,
+          95% 100%,
+          85% 90%,
+          75% 100%,
+          65% 90%,
+          55% 100%,
+          45% 90%,
+          35% 100%,
+          25% 90%,
+          15% 100%,
+          0% 90%
+        );
+      }
+
+      /* Pixel flag */
+      .pixel-flag {
+        display: grid;
+        grid-template-rows: repeat(3, 1fr);
+        grid-template-columns: repeat(10, 1fr);
+        width: 200px;
+        height: 120px;
+        border: 2px solid white;
+      }
+      .pixel-flag div {
+        width: 100%;
+        height: 100%;
+      }
+      .pixel-black {
+        background: black;
+      }
+      .pixel-red {
+        background: red;
+      }
+      .pixel-gold {
+        background: gold;
+      }
+
+      /* Folded flag */
+      .folded {
+        transform: perspective(500px) rotateX(15deg);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+      }
+
+      /* Reflection */
+      .reflect {
+        position: relative;
+      }
+      .reflect::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transform: scaleY(-1);
+        opacity: 0.3;
+      }
     </style>
   </head>
   <body>
@@ -248,6 +416,109 @@
           <div class="stripe red"></div>
           <div class="stripe gold"></div>
         </div>
+      </div>
+    </div>
+
+    <div>Newly added</div>
+    <div>
+      <h2>1. Classic Pulse</h2>
+      <div class="flag pulse">
+        <div class="stripe black"></div>
+        <div class="stripe red"></div>
+        <div class="stripe gold"></div>
+      </div>
+    </div>
+
+    <div>
+      <h2>2. Glassy Look</h2>
+      <div class="flag glass">
+        <div class="stripe black"></div>
+        <div class="stripe red"></div>
+        <div class="stripe gold"></div>
+      </div>
+    </div>
+
+    <div>
+      <h2>3. Shiny Sweep</h2>
+      <div class="flag shiny">
+        <div class="stripe black"></div>
+        <div class="stripe red"></div>
+        <div class="stripe gold"></div>
+      </div>
+    </div>
+
+    <div>
+      <h2>4. Ripple Flag</h2>
+      <div class="flag ripple">
+        <div class="stripe black"></div>
+        <div class="stripe red"></div>
+        <div class="stripe gold"></div>
+      </div>
+    </div>
+
+    <div>
+      <h2>5. Torn Paper Effect</h2>
+      <div class="flag torn">
+        <div class="stripe black"></div>
+        <div class="stripe red"></div>
+        <div class="stripe gold"></div>
+      </div>
+    </div>
+
+    <div>
+      <h2>6. Pixel Art Flag</h2>
+      <div class="pixel-flag">
+        <!-- Top: Black -->
+        <div class="pixel-black"></div>
+        <div class="pixel-black"></div>
+        <div class="pixel-black"></div>
+        <div class="pixel-black"></div>
+        <div class="pixel-black"></div>
+        <div class="pixel-black"></div>
+        <div class="pixel-black"></div>
+        <div class="pixel-black"></div>
+        <div class="pixel-black"></div>
+        <div class="pixel-black"></div>
+        <!-- Middle: Red -->
+        <div class="pixel-red"></div>
+        <div class="pixel-red"></div>
+        <div class="pixel-red"></div>
+        <div class="pixel-red"></div>
+        <div class="pixel-red"></div>
+        <div class="pixel-red"></div>
+        <div class="pixel-red"></div>
+        <div class="pixel-red"></div>
+        <div class="pixel-red"></div>
+        <div class="pixel-red"></div>
+        <!-- Bottom: Gold -->
+        <div class="pixel-gold"></div>
+        <div class="pixel-gold"></div>
+        <div class="pixel-gold"></div>
+        <div class="pixel-gold"></div>
+        <div class="pixel-gold"></div>
+        <div class="pixel-gold"></div>
+        <div class="pixel-gold"></div>
+        <div class="pixel-gold"></div>
+        <div class="pixel-gold"></div>
+        <div class="pixel-gold"></div>
+      </div>
+    </div>
+
+    <div>
+      <h2>7. Folded 3D Flag</h2>
+      <div class="flag folded">
+        <div class="stripe black"></div>
+        <div class="stripe red"></div>
+        <div class="stripe gold"></div>
+      </div>
+    </div>
+
+    <div>
+      <h2>8. Reflective Display</h2>
+      <div class="flag reflect">
+        <div class="stripe black"></div>
+        <div class="stripe red"></div>
+        <div class="stripe gold"></div>
       </div>
     </div>
   </body>
