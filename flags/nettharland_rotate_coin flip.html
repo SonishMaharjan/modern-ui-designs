@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Netherlands Flag - Gradient Coin Flip</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        height: 100vh;
+        background: linear-gradient(135deg, #dbe6f6, #c5796d);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "Segoe UI", sans-serif;
+        perspective: 1500px;
+      }
+
+      .flag-container {
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(14px);
+        padding: 24px;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      }
+
+      .flag {
+        width: 320px;
+        height: 210px;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .stripe {
+        width: 100%;
+        height: 33.33%;
+        transform: rotateX(90deg) scaleY(0);
+        transform-origin: center;
+        opacity: 0;
+        animation: coinFlip 1s forwards;
+        border-radius: 6px;
+      }
+
+      .stripe:nth-child(1) {
+        background: linear-gradient(135deg, #ff4e50, #f00000);
+        animation-delay: 0.2s;
+      }
+
+      .stripe:nth-child(2) {
+        background: linear-gradient(135deg, #f9f9f9, #d3d3d3);
+        animation-delay: 0.6s;
+      }
+
+      .stripe:nth-child(3) {
+        background: linear-gradient(135deg, #004e92, #000428);
+        animation-delay: 1s;
+      }
+
+      @keyframes coinFlip {
+        0% {
+          transform: rotateX(90deg) scaleY(0);
+          opacity: 0;
+        }
+        50% {
+          transform: rotateX(180deg) scaleY(0.5);
+          opacity: 1;
+        }
+        100% {
+          transform: rotateX(360deg) scaleY(1);
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flag-container">
+      <div class="flag">
+        <div class="stripe"></div>
+        <div class="stripe"></div>
+        <div class="stripe"></div>
+      </div>
+    </div>
+  </body>
+</html>

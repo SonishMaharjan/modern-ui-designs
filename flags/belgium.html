@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Belgium Flag - Puzzle Animation</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        height: 100vh;
+        background: linear-gradient(135deg, #f3f4f7, #cfd9df);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      .flag-container {
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(14px);
+        padding: 24px;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+      }
+
+      .flag {
+        width: 270px;
+        height: 180px;
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+      }
+
+      .stripe {
+        flex: 1;
+        opacity: 0;
+        transform: translateY(100%);
+        animation: slideUp 0.6s ease-out forwards;
+        border-right: 2px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .stripe:last-child {
+        border-right: none;
+      }
+
+      .stripe.black {
+        background: linear-gradient(135deg, #232526, #414345);
+        animation-delay: 0.1s;
+      }
+
+      .stripe.yellow {
+        background: linear-gradient(135deg, #f9d423, #ffdd00);
+        animation-delay: 0.5s;
+      }
+
+      .stripe.red {
+        background: linear-gradient(135deg, #cb2d3e, #ef473a);
+        animation-delay: 0.9s;
+      }
+
+      @keyframes slideUp {
+        0% {
+          transform: translateY(100%) scale(0.8);
+          opacity: 0;
+        }
+        60% {
+          transform: translateY(-10%) scale(1.05);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(0%) scale(1);
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flag-container">
+      <div class="flag">
+        <div class="stripe black"></div>
+        <div class="stripe yellow"></div>
+        <div class="stripe red"></div>
+      </div>
+    </div>
+  </body>
+</html>

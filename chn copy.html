@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>China Flag - Aesthetic UI</title>
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        background: linear-gradient(to bottom right, #0f0f0f, #1a1a1a);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: sans-serif;
+      }
+
+      .flag {
+        position: relative;
+        width: 360px;
+        height: 240px;
+        /* background: linear-gradient(145deg, #ff0000, #cc0000); */
+        border-radius: 24px;
+        box-shadow: 0 8px 24px rgba(255, 0, 0, 0.4);
+        animation: pulse 1.5s ease-out;
+        overflow: hidden;
+      }
+
+      .flag::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 24px;
+        box-shadow: 0 0 25px 5px rgba(255, 255, 0, 0.2);
+        animation: float 4s ease-in-out infinite;
+      }
+
+      .star {
+        position: absolute;
+        /* color: #ffde00; */
+        color: white;
+
+        font-size: 25px;
+        text-shadow: 0 0 6px #ffde00;
+      }
+
+      /* Large star */
+      .star.big {
+        left: 21px;
+        top: -10px;
+        font-size: 77px;
+      }
+
+      /* Small stars */
+      .star.s1 {
+        top: 2px;
+        left: 97px;
+        transform: rotate(25deg);
+      }
+      .star.s2 {
+        top: 21px;
+        left: 119px;
+        transform: rotate(46deg);
+      }
+      .star.s3 {
+        top: 51px;
+        left: 117px;
+        transform: rotate(0deg);
+      }
+      .star.s4 {
+        top: 71px;
+        left: 94px;
+        transform: rotate(-51deg);
+      }
+
+      /* Animations */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-6px);
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(0.95);
+          box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.5);
+        }
+        70% {
+          transform: scale(1.05);
+          box-shadow: 0 0 20px 10px rgba(255, 0, 0, 0);
+        }
+        100% {
+          transform: scale(1);
+          box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+        }
+      }
+
+      .wrapper {
+        position: relative;
+        width: 320px;
+        height: 200px;
+        margin: auto;
+      }
+
+      .image-flag,
+      .flag {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 24px;
+        overflow: hidden;
+      }
+
+      .image-flag img {
+        width: 100%;
+        height: 100%;
+        /* object-fit: cover; */
+        border-radius: 24px;
+        filter: brightness(0.9) contrast(1.1);
+        /* animation: float 4s ease-in-out infinite; */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="image-flag">
+        <img src="assets/china.png" />
+      </div>
+      <div class="flag">
+        <div class="star big">★</div>
+        <div class="star s1">★</div>
+        <div class="star s2">★</div>
+        <div class="star s3">★</div>
+        <div class="star s4">★</div>
+      </div>
+    </div>
+  </body>
+</html>

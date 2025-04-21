@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Belgium Flag - Puzzle Animation</title>
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        background: linear-gradient(135deg, #e0eafc, #cfdef3);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: sans-serif;
+      }
+
+      .flag-container {
+        padding: 24px;
+        background: rgba(255, 255, 255, 0.07);
+        border-radius: 20px;
+        backdrop-filter: blur(14px);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      }
+
+      .flag {
+        display: grid;
+        grid-template-columns: repeat(3, 60px); /* Wider now */
+        grid-template-rows: repeat(6, 40px);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      .block {
+        width: 60px;
+        height: 40px;
+        opacity: 0;
+        transform: scale(0.6);
+        animation: appear 0.4s ease-out forwards;
+      }
+
+      .black {
+        background: linear-gradient(135deg, #232526, #414345);
+      }
+
+      .yellow {
+        background: linear-gradient(135deg, #f9d423, #ffdd00);
+      }
+
+      .red {
+        background: linear-gradient(135deg, #cb2d3e, #ef473a);
+      }
+
+      @keyframes appear {
+        0% {
+          opacity: 0;
+          transform: scale(0.6) translateY(20px);
+        }
+        60% {
+          transform: scale(1.05) translateY(-5px);
+          opacity: 1;
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flag-container">
+      <div class="flag" id="flag"></div>
+    </div>
+
+    <script>
+      const flag = document.getElementById("flag");
+      const colors = ["black", "yellow", "red"];
+      let delay = 0;
+
+      for (let row = 0; row < 6; row++) {
+        for (let col = 0; col < 3; col++) {
+          const block = document.createElement("div");
+          block.className = `block ${colors[col]}`;
+          block.style.animationDelay = `${delay}s`;
+          delay += 0.08;
+          flag.appendChild(block);
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>China Flag - Aesthetic UI</title>
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        background: linear-gradient(to bottom right, #0f0f0f, #1a1a1a);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: sans-serif;
+      }
+
+      .flag {
+        position: relative;
+        width: 320px;
+        height: 200px;
+        background: linear-gradient(145deg, #ff0000, #cc0000);
+        border-radius: 8px;
+        box-shadow: 8px 8px 48px rgba(255, 0, 0, 0.5);
+        animation: pulse 1.5s ease-out;
+        overflow: hidden;
+      }
+
+      .star {
+        position: absolute;
+        color: #ffde00;
+        font-size: 25px;
+        text-shadow: 0 0 6px #ffde00;
+        animation: rotate 2s ease-in-out infinite;
+      }
+
+      /* Large star */
+      .star.big {
+        left: 21px;
+        top: -10px;
+        font-size: 77px;
+      }
+
+      /* Small stars */
+      .star.s1 {
+        top: 2px;
+        left: 97px;
+        transform: rotate(25deg);
+        animation: rotate 1s ease-in-out infinite;
+      }
+      .star.s2 {
+        top: 21px;
+        left: 119px;
+        transform: rotate(46deg);
+        animation: rotate 2s ease-in-out infinite;
+      }
+      .star.s3 {
+        top: 51px;
+        left: 117px;
+        transform: rotate(0deg);
+        animation: rotate 3s ease-in-out infinite;
+      }
+      .star.s4 {
+        top: 71px;
+        left: 94px;
+        transform: rotate(-51deg);
+        animation: rotate 1.4s ease-in-out infinite;
+      }
+
+      /* Animations */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-6px);
+        }
+      }
+
+      @keyframes rotate {
+        0%,
+        100% {
+          transform: rotate(0);
+        }
+        50% {
+          transform: rotate(10deg);
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(0.95);
+          box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.5);
+        }
+        70% {
+          transform: scale(1.05);
+          box-shadow: 0 0 20px 10px rgba(255, 0, 0, 0);
+        }
+        100% {
+          transform: scale(1);
+          box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flag">
+      <div class="star big">★</div>
+      <div class="star s1">★</div>
+      <div class="star s2">★</div>
+      <div class="star s3">★</div>
+      <div class="star s4">★</div>
+    </div>
+  </body>
+</html>

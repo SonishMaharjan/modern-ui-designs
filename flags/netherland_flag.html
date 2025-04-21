@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Netherlands Flag - Flip Animation</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        height: 100vh;
+        background: linear-gradient(135deg, #e0eafc, #cfdef3);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "Segoe UI", sans-serif;
+        perspective: 1000px;
+      }
+
+      .flag-container {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(15px);
+        padding: 24px;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .flag {
+        width: 320px;
+        height: 210px;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .stripe {
+        height: 33.33%;
+        width: 100%;
+        transform: rotateX(90deg);
+        transform-origin: top;
+        opacity: 0;
+        animation: flipDown 1s forwards;
+      }
+
+      .stripe:nth-child(1) {
+        background: #ae1c28;
+        animation-delay: 0.2s;
+      }
+
+      .stripe:nth-child(2) {
+        background: #ffffff;
+        animation-delay: 0.6s;
+      }
+
+      .stripe:nth-child(3) {
+        background: #21468b;
+        animation-delay: 1s;
+      }
+
+      @keyframes flipDown {
+        0% {
+          transform: rotateX(90deg);
+          opacity: 0;
+        }
+        60% {
+          opacity: 1;
+        }
+        100% {
+          transform: rotateX(0deg);
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flag-container">
+      <div class="flag">
+        <div class="stripe"></div>
+        <div class="stripe"></div>
+        <div class="stripe"></div>
+      </div>
+    </div>
+  </body>
+</html>
