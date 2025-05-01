@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modern French Flag Designs</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      h1 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 30px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        width: 100%;
+        max-width: 1200px;
+      }
+
+      .flag-container {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .flag-container:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      h2 {
+        color: #444;
+        margin-top: 0;
+        margin-bottom: 15px;
+        font-size: 1.2rem;
+      }
+
+      /* Base Flag Styles */
+      .flag {
+        width: 100%;
+        height: 200px;
+        display: flex;
+        border-radius: 8px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .blue,
+      .white,
+      .red {
+        height: 100%;
+        width: 33.33%;
+      }
+
+      .blue {
+        background: #0055a4;
+      }
+      .white {
+        background: white;
+      }
+      .red {
+        background: #ef4135;
+      }
+
+      /* 1. Waving Flag */
+      .waving-flag {
+        overflow: hidden;
+      }
+
+      .waving-flag::before {
+        content: "";
+        position: absolute;
+        width: 300%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          #0055a4 0%,
+          #0055a4 33%,
+          white 33%,
+          white 66%,
+          #ef4135 66%,
+          #ef4135 100%
+        );
+        animation: wave 5s linear infinite;
+        transform-origin: 50% 50%;
+      }
+
+      @keyframes wave {
+        0% {
+          transform: translateX(0) skewX(0deg);
+        }
+        50% {
+          transform: translateX(-66.6%) skewX(5deg);
+        }
+        100% {
+          transform: translateX(-133.2%) skewX(0deg);
+        }
+      }
+
+      /* 2. Gradient Hover Effect */
+      .gradient-flag .blue {
+        background: linear-gradient(to bottom, #0055a4, #003366);
+      }
+
+      .gradient-flag .white {
+        background: linear-gradient(to bottom, white, #f0f0f0);
+      }
+
+      .gradient-flag .red {
+        background: linear-gradient(to bottom, #ef4135, #cc0000);
+      }
+
+      .gradient-flag:hover .blue {
+        background: linear-gradient(to bottom, #003366, #001a33);
+      }
+
+      .gradient-flag:hover .white {
+        background: linear-gradient(to bottom, #f0f0f0, #e0e0e0);
+      }
+
+      .gradient-flag:hover .red {
+        background: linear-gradient(to bottom, #cc0000, #990000);
+      }
+
+      /* 3. Neon Glow Flag */
+      .neon-flag {
+        box-shadow: 0 0 10px #0055a4, 0 0 20px white, 0 0 30px #ef4135;
+        animation: pulse 3s infinite alternate;
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 10px #0055a4, 0 0 20px white, 0 0 30px #ef4135;
+        }
+        100% {
+          box-shadow: 0 0 20px #0055a4, 0 0 40px white, 0 0 60px #ef4135;
+        }
+      }
+
+      /* 4. 3D Perspective Flag */
+      .perspective-flag {
+        transform: perspective(500px) rotateY(15deg);
+        transition: transform 0.5s ease;
+      }
+
+      .perspective-flag:hover {
+        transform: perspective(500px) rotateY(0deg);
+      }
+
+      /* 5. Unfolding Flag */
+      .unfolding-flag .blue,
+      .unfolding-flag .white,
+      .unfolding-flag .red {
+        transform-origin: left;
+        animation: unfold 1s ease-out forwards;
+      }
+
+      .unfolding-flag .blue {
+        animation-delay: 0s;
+      }
+      .unfolding-flag .white {
+        animation-delay: 0.2s;
+      }
+      .unfolding-flag .red {
+        animation-delay: 0.4s;
+      }
+
+      @keyframes unfold {
+        0% {
+          transform: scaleX(0);
+        }
+        100% {
+          transform: scaleX(1);
+        }
+      }
+
+      /* 6. Particle Flag */
+      .particle-flag {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .particle {
+        position: absolute;
+        background: white;
+        border-radius: 50%;
+        animation: sparkle 2s infinite;
+        pointer-events: none;
+      }
+
+      @keyframes sparkle {
+        0% {
+          transform: scale(0);
+          opacity: 0;
+        }
+        50% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(0);
+          opacity: 0;
+        }
+      }
+
+      /* 7. Glassmorphism Flag */
+      .glass-flag {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .glass-flag .blue,
+      .glass-flag .white,
+      .glass-flag .red {
+        background: rgba(0, 85, 164, 0.7);
+      }
+
+      .glass-flag .white {
+        background: rgba(255, 255, 255, 0.7);
+      }
+
+      .glass-flag .red {
+        background: rgba(239, 65, 53, 0.7);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Modern French Flag Designs</h1>
+
+    <div class="container">
+      <!-- Waving Flag -->
+      <div class="flag-container">
+        <h2>Waving Flag</h2>
+        <div class="flag waving-flag"></div>
+      </div>
+
+      <!-- Gradient Flag -->
+      <div class="flag-container">
+        <h2>Gradient Flag</h2>
+        <div class="flag gradient-flag">
+          <div class="blue"></div>
+          <div class="white"></div>
+          <div class="red"></div>
+        </div>
+      </div>
+
+      <!-- Neon Flag -->
+      <div class="flag-container">
+        <h2>Neon Glow Flag</h2>
+        <div class="flag neon-flag">
+          <div class="blue"></div>
+          <div class="white"></div>
+          <div class="red"></div>
+        </div>
+      </div>
+
+      <!-- 3D Perspective Flag -->
+      <div class="flag-container">
+        <h2>3D Perspective Flag</h2>
+        <div class="flag perspective-flag">
+          <div class="blue"></div>
+          <div class="white"></div>
+          <div class="red"></div>
+        </div>
+      </div>
+
+      <!-- Unfolding Flag -->
+      <div class="flag-container">
+        <h2>Unfolding Flag</h2>
+        <div class="flag unfolding-flag">
+          <div class="blue"></div>
+          <div class="white"></div>
+          <div class="red"></div>
+        </div>
+      </div>
+
+      <!-- Glassmorphism Flag -->
+      <div class="flag-container">
+        <h2>Glassmorphism Flag</h2>
+        <div class="flag glass-flag">
+          <div class="blue"></div>
+          <div class="white"></div>
+          <div class="red"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Add particles to the particle flag
+      document.addEventListener("DOMContentLoaded", function () {
+        const particleFlag = document.createElement("div");
+        particleFlag.className = "flag particle-flag";
+        particleFlag.innerHTML = `
+                <div class="blue"></div>
+                <div class="white"></div>
+                <div class="red"></div>
+            `;
+
+        // Create particles
+        for (let i = 0; i < 50; i++) {
+          const particle = document.createElement("div");
+          particle.className = "particle";
+          particle.style.width = `${Math.random() * 8 + 2}px`;
+          particle.style.height = particle.style.width;
+          particle.style.left = `${Math.random() * 100}%`;
+          particle.style.top = `${Math.random() * 100}%`;
+          particle.style.animationDelay = `${Math.random() * 2}s`;
+          particleFlag.appendChild(particle);
+        }
+
+        // Create container for particle flag
+        const container = document.createElement("div");
+        container.className = "flag-container";
+        const title = document.createElement("h2");
+        title.textContent = "Particle Flag";
+        container.appendChild(title);
+        container.appendChild(particleFlag);
+
+        // Add to the grid
+        document.querySelector(".container").appendChild(container);
+      });
+    </script>
+  </body>
+</html>

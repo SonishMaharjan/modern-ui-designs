@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animated England Flag</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background: linear-gradient(135deg, #1e3c72, #2a5298);
+        overflow: hidden;
+        font-family: "Arial", sans-serif;
+      }
+
+      .flag-container {
+        position: relative;
+        width: 300px;
+        height: 200px;
+        perspective: 1000px;
+      }
+
+      .flag {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background-color: #c8102e;
+        transform-style: preserve-3d;
+        box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .cross-horizontal,
+      .cross-vertical {
+        position: absolute;
+        background-color: white;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+      }
+
+      .cross-horizontal {
+        width: 100%;
+        height: 20%;
+        top: 40%;
+        left: 0;
+        transform: translateX(-100%);
+        animation: slideInHorizontal 1.5s forwards 0.5s;
+      }
+
+      .cross-vertical {
+        width: 20%;
+        height: 100%;
+        left: 40%;
+        top: 0;
+        transform: translateY(-100%);
+        animation: slideInVertical 1.5s forwards 0.5s;
+      }
+
+      .corner {
+        position: absolute;
+        width: 30%;
+        height: 30%;
+        background-color: white;
+        opacity: 0;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+      }
+
+      .top-left {
+        top: 0;
+        left: 0;
+        animation: slideInTopLeft 1s forwards, fadeOut 1s forwards 2s;
+        transform-origin: top left;
+      }
+
+      .top-right {
+        top: 0;
+        right: 0;
+        animation: slideInTopRight 1s forwards 1s, fadeOut 1s forwards 2s;
+        transform-origin: top right;
+      }
+
+      .bottom-left {
+        bottom: 0;
+        left: 0;
+        animation: slideInBottomLeft 1s forwards 1s, fadeOut 1s forwards 2s;
+        transform-origin: bottom left;
+      }
+
+      .bottom-right {
+        bottom: 0;
+        right: 0;
+        animation: slideInBottomRight 1s forwards 1s, fadeOut 1s forwards 2s;
+        transform-origin: bottom right;
+      }
+
+      .title {
+        position: absolute;
+        bottom: -50px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        animation: fadeIn 1s forwards 3s;
+      }
+
+      @keyframes slideInHorizontal {
+        0% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes slideInVertical {
+        0% {
+          transform: translateY(-100%);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideInTopLeft {
+        0% {
+          transform: translate(-100%, -100%) rotate(45deg);
+          opacity: 0;
+        }
+        100% {
+          transform: translate(0, 0) rotate(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideInTopRight {
+        0% {
+          transform: translate(100%, -100%) rotate(-45deg);
+          opacity: 0;
+        }
+        100% {
+          transform: translate(0, 0) rotate(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideInBottomLeft {
+        0% {
+          transform: translate(-100%, 100%) rotate(-45deg);
+          opacity: 0;
+        }
+        100% {
+          transform: translate(0, 0) rotate(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideInBottomRight {
+        0% {
+          transform: translate(100%, 100%) rotate(45deg);
+          opacity: 0;
+        }
+        100% {
+          transform: translate(0, 0) rotate(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeOut {
+        0% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flag-container">
+      <div class="flag">
+        <div class="cross-horizontal"></div>
+        <div class="cross-vertical"></div>
+        <div class="corner top-left"></div>
+        <div class="corner top-right"></div>
+        <div class="corner bottom-left"></div>
+        <div class="corner bottom-right"></div>
+      </div>
+      <div class="title">England Flag</div>
+    </div>
+  </body>
+</html>

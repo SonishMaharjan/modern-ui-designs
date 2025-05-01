@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Creative Animations</title>
+    <style>
+      /* Global Styles */
+      body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        color: white;
+        font-family: "Poppins", sans-serif;
+        overflow-x: hidden;
+      }
+      section {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.05);
+      }
+      h1 {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 2em;
+        opacity: 0.7;
+      }
+
+      /* 1. Smoke Animation */
+      .smoke {
+        width: 100px;
+        height: 100px;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.3) 0%,
+          transparent 80%
+        );
+        border-radius: 50%;
+        position: absolute;
+        animation: smokeMove 10s infinite linear alternate;
+        filter: blur(20px);
+      }
+      @keyframes smokeMove {
+        0% {
+          transform: translate(0, 0) scale(1);
+        }
+        100% {
+          transform: translate(300px, -400px) scale(2);
+          opacity: 0;
+        }
+      }
+
+      /* 2. Bubbles Animation */
+      .bubble {
+        width: 20px;
+        height: 20px;
+        background: rgba(173, 216, 230, 0.7);
+        border-radius: 50%;
+        position: absolute;
+        bottom: -50px;
+        animation: bubbleUp 7s infinite ease-in;
+      }
+      @keyframes bubbleUp {
+        0% {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-1000px) scale(0.5);
+          opacity: 0;
+        }
+      }
+
+      /* 3. Fireflies Animation */
+      .firefly {
+        width: 5px;
+        height: 5px;
+        background: yellow;
+        border-radius: 50%;
+        position: absolute;
+        animation: fireflyMove 10s infinite ease-in-out alternate;
+        opacity: 0.8;
+        box-shadow: 0 0 8px yellow;
+      }
+      @keyframes fireflyMove {
+        0% {
+          transform: translate(0, 0);
+        }
+        100% {
+          transform: translate(200px, -200px);
+        }
+      }
+
+      /* 4. Water Ripple */
+      .ripple {
+        width: 20px;
+        height: 20px;
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        border-radius: 50%;
+        position: absolute;
+        animation: rippleExpand 3s infinite;
+      }
+      @keyframes rippleExpand {
+        0% {
+          transform: scale(0);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(10);
+          opacity: 0;
+        }
+      }
+
+      /* 5. Particle Explosion */
+      .particle {
+        width: 6px;
+        height: 6px;
+        background: hotpink;
+        border-radius: 50%;
+        position: absolute;
+        animation: explode 1s forwards;
+      }
+      @keyframes explode {
+        to {
+          transform: translate(var(--x), var(--y)) scale(0);
+          opacity: 0;
+        }
+      }
+
+      /* 6. Aurora Borealis */
+      .aurora {
+        width: 100%;
+        height: 200px;
+        background: linear-gradient(90deg, #00f0ff, #ff00f0, #00ff94);
+        background-size: 400% 400%;
+        animation: auroraMove 8s ease infinite;
+        position: absolute;
+        top: 30%;
+        filter: blur(30px);
+        opacity: 0.6;
+      }
+      @keyframes auroraMove {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* 7. Floating Clouds */
+      .cloud {
+        width: 150px;
+        height: 80px;
+        background: #fff;
+        border-radius: 50%;
+        position: absolute;
+        top: 20%;
+        animation: cloudMove 30s linear infinite;
+        opacity: 0.5;
+        filter: blur(10px);
+      }
+      @keyframes cloudMove {
+        0% {
+          left: -200px;
+        }
+        100% {
+          left: 120%;
+        }
+      }
+
+      /* 8. Confetti */
+      .confetti {
+        width: 10px;
+        height: 10px;
+        background: hsl(calc(360 * var(--hue)), 70%, 60%);
+        position: absolute;
+        top: -20px;
+        animation: fall 5s linear infinite;
+      }
+      @keyframes fall {
+        0% {
+          transform: translateY(0) rotate(0deg);
+        }
+        100% {
+          transform: translateY(100vh) rotate(360deg);
+        }
+      }
+
+      /* 9. Shimmer Text */
+      .shimmer {
+        font-size: 4rem;
+        background: linear-gradient(90deg, #fff, #00f0ff, #fff);
+        background-size: 200%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shimmerMove 3s linear infinite;
+      }
+      @keyframes shimmerMove {
+        0% {
+          background-position: 0%;
+        }
+        100% {
+          background-position: 200%;
+        }
+      }
+
+      /* 10. Falling Leaves */
+      .leaf {
+        width: 20px;
+        height: 20px;
+        background: linear-gradient(45deg, orange, yellow);
+        position: absolute;
+        top: -50px;
+        border-radius: 50% 50% 50% 50%;
+        animation: fallLeaves 10s linear infinite;
+      }
+      @keyframes fallLeaves {
+        0% {
+          transform: translateX(0) rotate(0deg);
+        }
+        100% {
+          transform: translateX(100px) translateY(100vh) rotate(720deg);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 1. Smoke -->
+    <section id="smoke-section">
+      <h1>Smoke</h1>
+      <div class="smoke"></div>
+    </section>
+
+    <!-- 2. Bubbles -->
+    <section id="bubbles-section">
+      <h1>Bubbles</h1>
+    </section>
+
+    <!-- 3. Fireflies -->
+    <section id="fireflies-section">
+      <h1>Fireflies</h1>
+    </section>
+
+    <!-- 4. Water Ripple -->
+    <section id="ripple-section">
+      <h1>Water Ripple</h1>
+      <div class="ripple"></div>
+    </section>
+
+    <!-- 5. Particle Explosion -->
+    <section id="particle-section">
+      <h1>Particle Explosion (Click)</h1>
+    </section>
+
+    <!-- 6. Aurora Borealis -->
+    <section id="aurora-section">
+      <h1>Aurora Borealis</h1>
+      <div class="aurora"></div>
+    </section>
+
+    <!-- 7. Floating Clouds -->
+    <section id="cloud-section">
+      <h1>Floating Clouds</h1>
+    </section>
+
+    <!-- 8. Confetti -->
+    <section id="confetti-section">
+      <h1>Confetti</h1>
+    </section>
+
+    <!-- 9. Shimmer Text -->
+    <section id="shimmer-section">
+      <h1>Shimmer Text</h1>
+      <div class="shimmer">Shiny!</div>
+    </section>
+
+    <!-- 10. Falling Leaves -->
+    <section id="leaves-section">
+      <h1>Falling Leaves</h1>
+    </section>
+
+    <script>
+      // Bubbles
+      for (let i = 0; i < 20; i++) {
+        let b = document.createElement("div");
+        b.className = "bubble";
+        b.style.left = Math.random() * window.innerWidth + "px";
+        b.style.animationDuration = Math.random() * 5 + 3 + "s";
+        document.getElementById("bubbles-section").appendChild(b);
+      }
+
+      // Fireflies
+      for (let i = 0; i < 20; i++) {
+        let f = document.createElement("div");
+        f.className = "firefly";
+        f.style.top = Math.random() * window.innerHeight + "px";
+        f.style.left = Math.random() * window.innerWidth + "px";
+        f.style.animationDuration = Math.random() * 5 + 5 + "s";
+        document.getElementById("fireflies-section").appendChild(f);
+      }
+
+      // Particle Explosion
+      document
+        .getElementById("particle-section")
+        .addEventListener("click", function (e) {
+          for (let i = 0; i < 30; i++) {
+            let p = document.createElement("div");
+            p.className = "particle";
+            p.style.left = e.clientX + "px";
+            p.style.top = e.clientY + "px";
+            p.style.setProperty("--x", (Math.random() - 0.5) * 500 + "px");
+            p.style.setProperty("--y", (Math.random() - 0.5) * 500 + "px");
+            document.body.appendChild(p);
+            setTimeout(() => p.remove(), 1000);
+          }
+        });
+
+      // Clouds
+      for (let i = 0; i < 5; i++) {
+        let c = document.createElement("div");
+        c.className = "cloud";
+        c.style.top = Math.random() * 50 + "%";
+        c.style.animationDuration = Math.random() * 20 + 30 + "s";
+        document.getElementById("cloud-section").appendChild(c);
+      }
+
+      // Confetti
+      for (let i = 0; i < 50; i++) {
+        let conf = document.createElement("div");
+        conf.className = "confetti";
+        conf.style.left = Math.random() * window.innerWidth + "px";
+        conf.style.setProperty("--hue", Math.random());
+        document.getElementById("confetti-section").appendChild(conf);
+      }
+
+      // Falling Leaves
+      for (let i = 0; i < 20; i++) {
+        let leaf = document.createElement("div");
+        leaf.className = "leaf";
+        leaf.style.left = Math.random() * window.innerWidth + "px";
+        leaf.style.animationDuration = Math.random() * 5 + 5 + "s";
+        document.getElementById("leaves-section").appendChild(leaf);
+      }
+    </script>
+  </body>
+</html>

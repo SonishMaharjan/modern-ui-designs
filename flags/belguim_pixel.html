@@ -7,7 +7,7 @@
       body {
         margin: 0;
         height: 100vh;
-        background: linear-gradient(135deg, #e0eafc, #cfdef3);
+        background: radial-gradient(circle at center, #4a5d73, #2a3445 80%);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -24,30 +24,30 @@
 
       .flag {
         display: grid;
-        grid-template-columns: repeat(3, 60px); /* Wider now */
-        grid-template-rows: repeat(6, 40px);
+        grid-template-columns: repeat(3, 80px);
+        grid-template-rows: repeat(3, 50px);
         border-radius: 10px;
         overflow: hidden;
       }
 
       .block {
-        width: 60px;
-        height: 40px;
+        width: 80px;
+        height: 50px;
         opacity: 0;
         transform: scale(0.6);
         animation: appear 0.4s ease-out forwards;
       }
 
       .black {
-        background: linear-gradient(135deg, #232526, #414345);
+        background: linear-gradient(90deg, #232526, #414345, #232526);
       }
 
       .yellow {
-        background: linear-gradient(135deg, #f9d423, #ffdd00);
+        background: linear-gradient(90deg, #f9d423, #e7d76d, #f9d423);
       }
 
       .red {
-        background: linear-gradient(135deg, #cb2d3e, #ef473a);
+        background: linear-gradient(90deg, #cb2d3e, #ef473a, #cb2d3e);
       }
 
       @keyframes appear {
@@ -76,12 +76,12 @@
       const colors = ["black", "yellow", "red"];
       let delay = 0;
 
-      for (let row = 0; row < 6; row++) {
+      for (let row = 0; row < 3; row++) {
         for (let col = 0; col < 3; col++) {
           const block = document.createElement("div");
           block.className = `block ${colors[col]}`;
           block.style.animationDelay = `${delay}s`;
-          delay += 0.08;
+          delay += 0.2;
           flag.appendChild(block);
         }
       }

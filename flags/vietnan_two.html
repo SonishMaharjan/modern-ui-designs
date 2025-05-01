@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vietnam Flag Pulse</title>
+    <style>
+      :root {
+        --vietnam-red: #da251d;
+        --vietnam-yellow: #ffcd00;
+        --flag-width: 300px;
+        --flag-ratio: 1.5;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+        font-family: sans-serif;
+        overflow: hidden;
+      }
+
+      .flag-card {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        padding: 30px;
+      }
+
+      .flag {
+        width: var(--flag-width);
+        height: calc(var(--flag-width) / var(--flag-ratio));
+        background-color: var(--vietnam-red);
+        border-radius: 8px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .star {
+        color: var(--vietnam-yellow);
+        font-size: calc(var(--flag-width) * 0.3);
+        animation: pulse 1s infinite alternate;
+        animation-delay: 0s;
+        text-shadow: 0 0 15px rgba(255, 205, 0, 0.5);
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1.3);
+          opacity: 0.9;
+        }
+      }
+
+      .particles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        overflow: hidden;
+      }
+
+      .particle {
+        position: absolute;
+        background: radial-gradient(
+          circle,
+          rgba(255, 205, 0, 0.6) 0%,
+          rgba(255, 205, 0, 0) 70%
+        );
+        border-radius: 50%;
+        will-change: transform, opacity;
+        animation: float 1.5s ease-out forwards;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translate(0, 0) scale(0.5);
+          opacity: 0.9;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          transform: var(--translate) scale(1);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flag-card">
+      <div class="flag">
+        <div class="particles" id="particles"></div>
+        <div class="star">★</div>
+      </div>
+    </div>
+
+    <script>
+      const particlesContainer = document.getElementById("particles");
+      const star = document.querySelector(".star");
+
+      function createParticle() {
+        const particle = document.createElement("div");
+        particle.className = "particle";
+
+        const size = Math.random() * 5 + 3;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+
+        const containerRect = particlesContainer.getBoundingClientRect();
+        const centerX = containerRect.width / 2;
+        const centerY = containerRect.height / 2;
+        particle.style.left = `${centerX}px`;
+        particle.style.top = `${centerY}px`;
+
+        const angle = Math.random() * 2 * Math.PI;
+        const distance = 60 + Math.random() * 80;
+        const x = Math.cos(angle) * distance;
+        const y = Math.sin(angle) * distance;
+
+        particle.style.setProperty("--translate", `translate(${x}px, ${y}px)`);
+        particlesContainer.appendChild(particle);
+
+        // Clean up after animation
+        setTimeout(() => particle.remove(), 1600);
+      }
+
+      // On each pulse (squeeze state)
+      star.addEventListener("animationiteration", () => {
+        for (let i = 0; i < 10; i++) {
+          createParticle();
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Realistic Paper Weave</title>
+    <style>
+      body {
+        margin: 0;
+        background: #eee;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+
+      .weave {
+        display: grid;
+        grid-template-columns: repeat(5, 60px);
+        grid-template-rows: repeat(5, 60px);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .cell {
+        position: relative;
+        width: 60px;
+        height: 60px;
+      }
+
+      .v-strip,
+      .h-strip {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        /* border-radius: 4px; */
+      }
+
+      .v-strip {
+        background: linear-gradient(to bottom, #4a90e2, #1c5aa6);
+        box-shadow: inset -1px 0 2px rgba(0, 0, 0, 0.3),
+          inset 1px 0 2px rgba(255, 255, 255, 0.2);
+        z-index: 1;
+      }
+
+      .h-strip {
+        background: linear-gradient(to right, #e74c3c, #aa2c1e);
+        box-shadow: inset 0 -1px 2px rgba(0, 0, 0, 0.3),
+          inset 0 1px 2px rgba(255, 255, 255, 0.2);
+      }
+
+      .over {
+        z-index: 2;
+      }
+
+      .under {
+        z-index: 0;
+      }
+
+      .cell::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+        z-index: -1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="weave">
+      <!-- Row 0 -->
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip over"></div>
+      </div>
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip under"></div>
+      </div>
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip over"></div>
+      </div>
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip under"></div>
+      </div>
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip over"></div>
+      </div>
+
+      <!-- Row 1 -->
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip under"></div>
+      </div>
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip over"></div>
+      </div>
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip under"></div>
+      </div>
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip over"></div>
+      </div>
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip under"></div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip over"></div>
+      </div>
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip under"></div>
+      </div>
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip over"></div>
+      </div>
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip under"></div>
+      </div>
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip over"></div>
+      </div>
+
+      <!-- Row 3 -->
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip under"></div>
+      </div>
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip over"></div>
+      </div>
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip under"></div>
+      </div>
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip over"></div>
+      </div>
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip under"></div>
+      </div>
+
+      <!-- Row 4 -->
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip over"></div>
+      </div>
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip under"></div>
+      </div>
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip over"></div>
+      </div>
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip under"></div>
+      </div>
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip over"></div>
+      </div>
+    </div>
+  </body>
+</html>

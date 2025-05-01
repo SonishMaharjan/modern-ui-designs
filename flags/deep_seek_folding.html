@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UK Flag Unfolding Animation</title>
+    <style>
+      #stage {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 350px;
+        height: 350px;
+        perspective: 800;
+      }
+
+      #frame {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 350px;
+        height: 350px;
+        opacity: 0;
+        box-shadow: 0 0 40px rgba(0, 0, 0, 0.06);
+        -webkit-animation: show 0.5s 3s ease forwards;
+        animation: show 0.5s 3s ease forwards;
+      }
+
+      #box {
+        position: absolute;
+        width: 150px;
+        height: 150px;
+        background: #abc7c9;
+        border: 25px solid #f8f3e8;
+        box-shadow: 0 0 40px rgba(0, 0, 0, 0.07);
+        overflow: hidden;
+        border-radius: 4px;
+      }
+      #box .in {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: rgba(241, 231, 209, 0.6);
+        -webkit-animation: grow 0.5s 3s cubic-bezier(0.66, -0.3, 0.66, 1)
+          forwards;
+        animation: grow 0.5s 3s cubic-bezier(0.66, -0.3, 0.66, 1) forwards;
+      }
+      #box .in.one {
+        left: 100px;
+        bottom: -50px;
+      }
+      #box .in.two {
+        left: -50px;
+        bottom: -50px;
+      }
+      #box .in.thr {
+        left: 100px;
+        bottom: 100px;
+      }
+      #box .in.fou {
+        left: -50px;
+        bottom: 100px;
+      }
+      #box:nth-child(1) {
+        background: #f6efe0;
+        border-radius: 5px 0 0 0;
+        border-right: none;
+        border-bottom: none;
+        -webkit-animation: clr 1s 1s ease forwards;
+        animation: clr 1s 1s ease forwards;
+      }
+      #box:nth-child(2) {
+        background: #f6efe0;
+        border-radius: 0 5px 0 0;
+        left: 175px;
+        border-left: none;
+        border-bottom: none;
+        transform-origin: 0 0;
+        transform: rotateY(180deg);
+        -webkit-animation: fold 1s 1s ease forwards;
+        animation: fold 1s 1s ease forwards;
+      }
+      #box:nth-child(3) {
+        background: #f6efe0;
+        border-radius: 0 0 0 5px;
+        top: 175px;
+        width: 150px;
+        opacity: 0;
+        border-top: none;
+        border-right: none;
+        transform: rotateX(180deg);
+        transform-origin: 0 0;
+        -webkit-animation: fold2 1s 2s ease forwards;
+        animation: fold2 1s 2s ease forwards;
+      }
+      #box:nth-child(4) {
+        background: #f6efe0;
+        border-radius: 0 0 5px 0;
+        top: 175px;
+        left: 175px;
+        opacity: 0;
+        border-top: none;
+        border-left: none;
+        transform: rotateX(180deg);
+        transform-origin: 0 0;
+        -webkit-animation: fold2 1s 2s ease forwards;
+        animation: fold2 1s 2s ease forwards;
+      }
+
+      @-webkit-keyframes clr {
+        99.99% {
+          background: #f6efe0;
+        }
+        100% {
+          background: #abc7c9;
+        }
+      }
+
+      @keyframes clr {
+        99.99% {
+          background: #f6efe0;
+        }
+        100% {
+          background: #abc7c9;
+        }
+      }
+      @-webkit-keyframes fold {
+        99.99% {
+          background: #f6efe0;
+        }
+        100% {
+          background: #abc7c9;
+          transform: rotateY(360deg);
+        }
+      }
+      @keyframes fold {
+        99.99% {
+          background: #f6efe0;
+        }
+        100% {
+          background: #abc7c9;
+          transform: rotateY(360deg);
+        }
+      }
+      @-webkit-keyframes fold2 {
+        0% {
+          opacity: 1;
+          background: #f6efe0;
+        }
+        25% {
+          opacity: 1;
+          background: #f6efe0;
+        }
+        40% {
+          opacity: 1;
+          background: #abc7c9;
+        }
+        100% {
+          opacity: 1;
+          background: #abc7c9;
+          transform: rotateX(0deg);
+        }
+      }
+      @keyframes fold2 {
+        0% {
+          opacity: 1;
+          background: #f6efe0;
+        }
+        25% {
+          opacity: 1;
+          background: #f6efe0;
+        }
+        40% {
+          opacity: 1;
+          background: #abc7c9;
+        }
+        100% {
+          opacity: 1;
+          background: #abc7c9;
+          transform: rotateX(0deg);
+        }
+      }
+      @-webkit-keyframes show {
+        100% {
+          opacity: 1;
+        }
+      }
+      @keyframes show {
+        100% {
+          opacity: 1;
+        }
+      }
+      @-webkit-keyframes grow {
+        100% {
+          width: 170px;
+          height: 170px;
+          border-radius: 10%;
+          left: -10px;
+          bottom: -10px;
+          background: rgba(140, 178, 181, 0.8);
+        }
+      }
+      @keyframes grow {
+        100% {
+          width: 170px;
+          height: 170px;
+          border-radius: 10%;
+          left: -10px;
+          bottom: -10px;
+          background: rgba(140, 178, 181, 0.8);
+        }
+      }
+      body {
+        background: #ccc;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="frame"></div>
+    <div id="stage">
+      <div id="box">
+        <div class="in one"></div>
+      </div>
+      <div id="box">
+        <div class="in two"></div>
+      </div>
+      <div id="box">
+        <div class="in thr"></div>
+      </div>
+      <div id="box">
+        <div class="in fou"></div>
+      </div>
+    </div>
+  </body>
+</html>

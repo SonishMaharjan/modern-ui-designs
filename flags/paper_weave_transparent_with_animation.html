@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weave Effect Animations</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+        font-family: Arial, sans-serif;
+        overflow: hidden;
+      }
+
+      .weave-container {
+        display: grid;
+        grid-template-columns: repeat(5, 60px);
+        grid-template-rows: repeat(5, 60px);
+        gap: 5px;
+        position: relative;
+        animation: pulse 5s infinite ease-in-out; /* Apply pulse animation */
+      }
+
+      .cell {
+        position: relative;
+        width: 60px;
+        height: 60px;
+      }
+
+      .v-strip,
+      .h-strip {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 4px;
+        animation: slide 10s infinite alternate ease-in-out,
+          rotate 15s infinite linear; /* Apply multiple animations */
+      }
+
+      .v-strip {
+        background: linear-gradient(
+          45deg,
+          rgba(0, 0, 0, 0.1),
+          rgba(0, 0, 0, 0.3)
+        );
+        box-shadow: inset -1px 0 5px rgba(0, 0, 0, 0.7),
+          inset 1px 0 5px rgba(255, 255, 255, 0.4),
+          2px 2px 6px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+      }
+
+      .h-strip {
+        background: linear-gradient(
+          135deg,
+          rgba(0, 0, 0, 0.1),
+          rgba(0, 0, 0, 0.3)
+        );
+        box-shadow: inset 0 -1px 5px rgba(0, 0, 0, 0.7),
+          inset 0 1px 5px rgba(255, 255, 255, 0.4),
+          2px 2px 6px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Pulse animation to make it "breathe" */
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      /* Sliding animation for stripes */
+      @keyframes slide {
+        0% {
+          transform: translateX(0) translateY(0); /* Initial position */
+        }
+        25% {
+          transform: translateX(10px) translateY(10px); /* Small shift */
+        }
+        50% {
+          transform: translateX(-10px) translateY(-10px); /* Opposite shift */
+        }
+        75% {
+          transform: translateX(10px) translateY(-10px); /* Another shift */
+        }
+        100% {
+          transform: translateX(0) translateY(0); /* Reset to initial */
+        }
+      }
+
+      /* Rotate effect to create a spinning sensation */
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Fade in and out animation */
+      @keyframes fade {
+        0% {
+          opacity: 0.3;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0.3;
+        }
+      }
+
+      .cell:nth-child(odd) .v-strip,
+      .cell:nth-child(odd) .h-strip {
+        animation: fade 3s infinite ease-in-out; /* Apply fade effect to alternate cells */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="weave-container">
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip"></div>
+      </div>
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip"></div>
+      </div>
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip"></div>
+      </div>
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip"></div>
+      </div>
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip"></div>
+      </div>
+
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip"></div>
+      </div>
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip"></div>
+      </div>
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip"></div>
+      </div>
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip"></div>
+      </div>
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip"></div>
+      </div>
+
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip"></div>
+      </div>
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip"></div>
+      </div>
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip"></div>
+      </div>
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip"></div>
+      </div>
+      <div class="cell">
+        <div class="v-strip"></div>
+        <div class="h-strip"></div>
+      </div>
+    </div>
+  </body>
+</html>

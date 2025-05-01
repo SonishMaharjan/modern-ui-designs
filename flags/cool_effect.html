@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>15 Cool CSS Animation Effects</title>
+    <style>
+      :root {
+        --primary: #4361ee;
+        --secondary: #3a0ca3;
+        --accent: #f72585;
+        --light: #f8f9fa;
+        --dark: #212529;
+      }
+
+      body {
+        font-family: "Segoe UI", system-ui, sans-serif;
+        background-color: var(--light);
+        color: var(--dark);
+        margin: 0;
+        padding: 20px;
+        line-height: 1.6;
+      }
+
+      h1 {
+        text-align: center;
+        margin: 30px 0;
+        color: var(--secondary);
+        font-size: 2.5rem;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 30px;
+      }
+
+      .effect-card {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .effect-card:hover {
+        transform: translateY(-5px);
+      }
+
+      h2 {
+        color: var(--primary);
+        margin-top: 0;
+        border-bottom: 2px solid var(--primary);
+        padding-bottom: 10px;
+      }
+
+      .animation-box {
+        height: 200px;
+        width: 100%;
+        position: relative;
+        margin: 20px 0;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #f0f0f0;
+        border-radius: 8px;
+      }
+
+      /* 1. Floating Smoke Effect */
+      .smoke {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 50%;
+        filter: blur(10px);
+        animation: float-up 8s infinite ease-out;
+      }
+
+      .smoke:nth-child(1) {
+        left: 30%;
+        animation-delay: 0s;
+      }
+
+      .smoke:nth-child(2) {
+        left: 50%;
+        animation-delay: 2s;
+      }
+
+      .smoke:nth-child(3) {
+        left: 70%;
+        animation-delay: 4s;
+      }
+
+      @keyframes float-up {
+        0% {
+          transform: translateY(0) scale(0.5);
+          opacity: 0;
+        }
+        20% {
+          opacity: 0.8;
+        }
+        100% {
+          transform: translateY(-150px) scale(3);
+          opacity: 0;
+        }
+      }
+
+      /* 2. Liquid Bubble Background */
+      .liquid-bubbles {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .bubble {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(var(--primary-rgb), 0.1);
+        animation: float-bubble 15s infinite linear;
+      }
+
+      @keyframes float-bubble {
+        0% {
+          transform: translateY(0) translateX(0);
+        }
+        50% {
+          transform: translateY(-100px) translateX(50px);
+        }
+        100% {
+          transform: translateY(0) translateX(0);
+        }
+      }
+
+      /* 3. Neon Glow Text */
+      .neon-text {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #fff;
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px var(--accent),
+          0 0 40px var(--accent);
+        animation: neon-flicker 1.5s infinite alternate;
+      }
+
+      @keyframes neon-flicker {
+        0%,
+        19%,
+        21%,
+        23%,
+        25%,
+        54%,
+        56%,
+        100% {
+          text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px var(--accent),
+            0 0 40px var(--accent);
+        }
+        20%,
+        24%,
+        55% {
+          text-shadow: none;
+        }
+      }
+
+      /* 4. Hover Glow Card */
+      .glow-card {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        background: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5rem;
+        z-index: 1;
+      }
+
+      .glow-card::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, var(--primary), var(--accent));
+        z-index: -1;
+        filter: blur(20px);
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .glow-card:hover::before {
+        opacity: 0.7;
+      }
+
+      /* 5. Infinite Rotating Shapes */
+      .rotating-shapes {
+        position: relative;
+        height: 100px;
+        width: 100px;
+        animation: rotate 10s infinite linear;
+      }
+
+      .shape {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        opacity: 0.7;
+      }
+
+      .shape:nth-child(1) {
+        background: var(--primary);
+        top: 0;
+        left: 0;
+      }
+
+      .shape:nth-child(2) {
+        background: var(--accent);
+        top: 0;
+        right: 0;
+      }
+
+      .shape:nth-child(3) {
+        background: var(--secondary);
+        bottom: 0;
+        left: 0;
+      }
+
+      .shape:nth-child(4) {
+        background: var(--dark);
+        bottom: 0;
+        right: 0;
+      }
+
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* 6. Pulsing Circle */
+      .pulse-circle {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: var(--primary);
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(0.95);
+          box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0.7);
+        }
+        70% {
+          transform: scale(1);
+          box-shadow: 0 0 0 15px rgba(var(--primary-rgb), 0);
+        }
+        100% {
+          transform: scale(0.95);
+          box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0);
+        }
+      }
+
+      /* 7. Floating Balloons */
+      .balloon {
+        position: absolute;
+        width: 40px;
+        height: 50px;
+        border-radius: 50%;
+        animation: float-balloon 8s infinite ease-in-out;
+      }
+
+      .balloon::after {
+        content: "";
+        position: absolute;
+        width: 2px;
+        height: 30px;
+        background: #ccc;
+        bottom: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      @keyframes float-balloon {
+        0%,
+        100% {
+          transform: translateY(0) rotate(-5deg);
+        }
+        50% {
+          transform: translateY(-50px) rotate(5deg);
+        }
+      }
+
+      /* 8. Typing Animation */
+      .typing-text {
+        font-family: monospace;
+        overflow: hidden;
+        border-right: 3px solid var(--primary);
+        white-space: nowrap;
+        animation: typing 3.5s steps(40, end),
+          blink-caret 0.75s step-end infinite;
+      }
+
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      @keyframes blink-caret {
+        from,
+        to {
+          border-color: transparent;
+        }
+        50% {
+          border-color: var(--primary);
+        }
+      }
+
+      /* 9. Color Changing Background */
+      .color-change {
+        animation: color-change 10s infinite alternate;
+      }
+
+      @keyframes color-change {
+        0% {
+          background-color: var(--primary);
+        }
+        33% {
+          background-color: var(--accent);
+        }
+        66% {
+          background-color: var(--secondary);
+        }
+        100% {
+          background-color: var(--dark);
+        }
+      }
+
+      /* 10. 3D Rotating Cube */
+      .cube-container {
+        perspective: 1000px;
+        height: 100px;
+        width: 100px;
+      }
+
+      .cube {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+        animation: rotate-cube 10s infinite linear;
+      }
+
+      .cube-face {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: 2px solid white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        color: white;
+        opacity: 0.8;
+      }
+
+      .front {
+        background: var(--primary);
+        transform: translateZ(50px);
+      }
+      .back {
+        background: var(--accent);
+        transform: rotateY(180deg) translateZ(50px);
+      }
+      .right {
+        background: var(--secondary);
+        transform: rotateY(90deg) translateZ(50px);
+      }
+      .left {
+        background: var(--dark);
+        transform: rotateY(-90deg) translateZ(50px);
+      }
+      .top {
+        background: #4cc9f0;
+        transform: rotateX(90deg) translateZ(50px);
+      }
+      .bottom {
+        background: #4895ef;
+        transform: rotateX(-90deg) translateZ(50px);
+      }
+
+      @keyframes rotate-cube {
+        from {
+          transform: rotateX(0) rotateY(0);
+        }
+        to {
+          transform: rotateX(360deg) rotateY(360deg);
+        }
+      }
+
+      /* 11. Water Ripple Effect */
+      .ripple {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: rgba(var(--primary-rgb), 0.3);
+        animation: ripple 2s infinite ease-out;
+      }
+
+      .ripple::before,
+      .ripple::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(var(--primary-rgb), 0.3);
+        animation: ripple 2s infinite ease-out;
+      }
+
+      .ripple::before {
+        animation-delay: 0.5s;
+      }
+
+      .ripple::after {
+        animation-delay: 1s;
+      }
+
+      @keyframes ripple {
+        0% {
+          transform: scale(0.5);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(2);
+          opacity: 0;
+        }
+      }
+
+      /* 12. Bouncing Loader */
+      .bouncing-loader {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        height: 50px;
+      }
+
+      .bouncing-dot {
+        width: 15px;
+        height: 15px;
+        margin: 0 5px;
+        border-radius: 50%;
+        background-color: var(--primary);
+        animation: bounce 0.5s infinite alternate;
+      }
+
+      .bouncing-dot:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+
+      .bouncing-dot:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+
+      @keyframes bounce {
+        from {
+          transform: translateY(0);
+        }
+        to {
+          transform: translateY(-20px);
+        }
+      }
+
+      /* 13. Gradient Border Animation */
+      .gradient-border {
+        position: relative;
+        width: 150px;
+        height: 80px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: white;
+        z-index: 1;
+      }
+
+      .gradient-border::before {
+        content: "";
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        right: -5px;
+        bottom: -5px;
+        background: linear-gradient(45deg, var(--primary), var(--accent));
+        z-index: -1;
+        animation: rotate-gradient 3s linear infinite;
+        background-size: 200% 200%;
+      }
+
+      @keyframes rotate-gradient {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* 14. Floating Islands */
+      .island {
+        position: absolute;
+        width: 80px;
+        height: 30px;
+        background: #5e503f;
+        border-radius: 50% 50% 0 0;
+        bottom: 50px;
+        animation: float-island 6s infinite ease-in-out;
+      }
+
+      .island::before {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 40px;
+        background: #2d6a4f;
+        border-radius: 10px;
+        bottom: 30px;
+        left: 30px;
+      }
+
+      @keyframes float-island {
+        0%,
+        100% {
+          transform: translateY(0) rotate(-2deg);
+        }
+        50% {
+          transform: translateY(-20px) rotate(2deg);
+        }
+      }
+
+      /* 15. Firefly Effect */
+      .firefly {
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: #f8f9fa;
+        filter: blur(1px);
+        box-shadow: 0 0 10px 2px #fff;
+        animation: firefly-move 10s infinite ease-in-out;
+      }
+
+      @keyframes firefly-move {
+        0%,
+        100% {
+          transform: translate(0, 0);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        50% {
+          transform: translate(100px, -50px);
+        }
+        80% {
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>15 Cool CSS Animation Effects</h1>
+
+    <div class="container">
+      <!-- Effect 1: Floating Smoke -->
+      <div class="effect-card">
+        <h2>1. Floating Smoke Effect</h2>
+        <div class="animation-box">
+          <div class="smoke"></div>
+          <div class="smoke"></div>
+          <div class="smoke"></div>
+        </div>
+        <p>Ethereal smoke particles that float upward and dissipate.</p>
+      </div>
+
+      <!-- Effect 2: Liquid Bubbles -->
+      <div class="effect-card">
+        <h2>2. Liquid Bubble Background</h2>
+        <div class="animation-box">
+          <div class="liquid-bubbles" id="liquid-bubbles"></div>
+        </div>
+        <p>Organic bubble shapes that gently float in a liquid-like motion.</p>
+      </div>
+
+      <!-- Effect 3: Neon Glow Text -->
+      <div class="effect-card">
+        <h2>3. Neon Glow Text</h2>
+        <div class="animation-box">
+          <div class="neon-text">NEON</div>
+        </div>
+        <p>Vibrant neon text with a realistic flickering effect.</p>
+      </div>
+
+      <!-- Effect 4: Hover Glow Card -->
+      <div class="effect-card">
+        <h2>4. Hover Glow Card</h2>
+        <div class="animation-box">
+          <div class="glow-card">Hover Me</div>
+        </div>
+        <p>Card that reveals a colorful glow effect on hover.</p>
+      </div>
+
+      <!-- Effect 5: Infinite Rotating Shapes -->
+      <div class="effect-card">
+        <h2>5. Infinite Rotating Shapes</h2>
+        <div class="animation-box">
+          <div class="rotating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+          </div>
+        </div>
+        <p>Colorful shapes that rotate continuously in harmony.</p>
+      </div>
+
+      <!-- Effect 6: Pulsing Circle -->
+      <div class="effect-card">
+        <h2>6. Pulsing Circle</h2>
+        <div class="animation-box">
+          <div class="pulse-circle"></div>
+        </div>
+        <p>A circle that pulses with a radiating glow effect.</p>
+      </div>
+
+      <!-- Effect 7: Floating Balloons -->
+      <div class="effect-card">
+        <h2>7. Floating Balloons</h2>
+        <div class="animation-box" id="balloons-container"></div>
+        <p>Cheerful balloons that gently float up and down.</p>
+      </div>
+
+      <!-- Effect 8: Typing Animation -->
+      <div class="effect-card">
+        <h2>8. Typing Animation</h2>
+        <div
+          class="animation-box"
+          style="display: flex; justify-content: center; align-items: center"
+        >
+          <div class="typing-text">CSS Animations</div>
+        </div>
+        <p>Simulates text being typed with a blinking cursor.</p>
+      </div>
+
+      <!-- Effect 9: Color Changing Background -->
+      <div class="effect-card">
+        <h2>9. Color Changing Background</h2>
+        <div class="animation-box color-change"></div>
+        <p>Smooth transitions between multiple background colors.</p>
+      </div>
+
+      <!-- Effect 10: 3D Rotating Cube -->
+      <div class="effect-card">
+        <h2>10. 3D Rotating Cube</h2>
+        <div class="animation-box">
+          <div class="cube-container">
+            <div class="cube">
+              <div class="cube-face front">1</div>
+              <div class="cube-face back">2</div>
+              <div class="cube-face right">3</div>
+              <div class="cube-face left">4</div>
+              <div class="cube-face top">5</div>
+              <div class="cube-face bottom">6</div>
+            </div>
+          </div>
+        </div>
+        <p>A 3D cube that rotates to show all faces.</p>
+      </div>
+
+      <!-- Effect 11: Water Ripple Effect -->
+      <div class="effect-card">
+        <h2>11. Water Ripple Effect</h2>
+        <div class="animation-box">
+          <div class="ripple"></div>
+        </div>
+        <p>Concentric circles that ripple outward like water.</p>
+      </div>
+
+      <!-- Effect 12: Bouncing Loader -->
+      <div class="effect-card">
+        <h2>12. Bouncing Loader</h2>
+        <div class="animation-box">
+          <div class="bouncing-loader">
+            <div class="bouncing-dot"></div>
+            <div class="bouncing-dot"></div>
+            <div class="bouncing-dot"></div>
+          </div>
+        </div>
+        <p>Three dots that bounce in a sequential loading pattern.</p>
+      </div>
+
+      <!-- Effect 13: Gradient Border Animation -->
+      <div class="effect-card">
+        <h2>13. Gradient Border Animation</h2>
+        <div class="animation-box">
+          <div class="gradient-border">Gradient</div>
+        </div>
+        <p>Animated gradient border that cycles through colors.</p>
+      </div>
+
+      <!-- Effect 14: Floating Islands -->
+      <div class="effect-card">
+        <h2>14. Floating Islands</h2>
+        <div class="animation-box" id="islands-container"></div>
+        <p>Whimsical floating islands with tiny trees.</p>
+      </div>
+
+      <!-- Effect 15: Firefly Effect -->
+      <div class="effect-card">
+        <h2>15. Firefly Effect</h2>
+        <div
+          class="animation-box"
+          style="background: #1a1a2e"
+          id="fireflies-container"
+        ></div>
+        <p>Twinkling fireflies that randomly move through the night.</p>
+      </div>
+    </div>
+
+    <script>
+      // Generate random bubbles for Effect 2
+      const liquidBubbles = document.getElementById("liquid-bubbles");
+      for (let i = 0; i < 15; i++) {
+        const bubble = document.createElement("div");
+        bubble.className = "bubble";
+        bubble.style.width = `${Math.random() * 30 + 10}px`;
+        bubble.style.height = bubble.style.width;
+        bubble.style.left = `${Math.random() * 100}%`;
+        bubble.style.top = `${Math.random() * 100}%`;
+        bubble.style.animationDuration = `${Math.random() * 10 + 10}s`;
+        bubble.style.animationDelay = `${Math.random() * 5}s`;
+        bubble.style.opacity = Math.random() * 0.5 + 0.1;
+        liquidBubbles.appendChild(bubble);
+      }
+
+      // Generate balloons for Effect 7
+      const balloonsContainer = document.getElementById("balloons-container");
+      const colors = ["#ff6b6b", "#48dbfb", "#1dd1a1", "#feca57", "#5f27cd"];
+      for (let i = 0; i < 5; i++) {
+        const balloon = document.createElement("div");
+        balloon.className = "balloon";
+        balloon.style.background = colors[i];
+        balloon.style.left = `${Math.random() * 70 + 15}%`;
+        balloon.style.bottom = "0";
+        balloon.style.animationDuration = `${Math.random() * 5 + 5}s`;
+        balloon.style.animationDelay = `${Math.random() * 3}s`;
+        balloonsContainer.appendChild(balloon);
+      }
+
+      // Generate islands for Effect 14
+      const islandsContainer = document.getElementById("islands-container");
+      for (let i = 0; i < 3; i++) {
+        const island = document.createElement("div");
+        island.className = "island";
+        island.style.left = `${Math.random() * 60 + 20}%`;
+        island.style.width = `${Math.random() * 40 + 60}px`;
+        island.style.height = `${Math.random() * 10 + 20}px`;
+        island.style.animationDuration = `${Math.random() * 4 + 4}s`;
+        islandsContainer.appendChild(island);
+      }
+
+      // Generate fireflies for Effect 15
+      const firefliesContainer = document.getElementById("fireflies-container");
+      for (let i = 0; i < 10; i++) {
+        const firefly = document.createElement("div");
+        firefly.className = "firefly";
+        firefly.style.left = `${Math.random() * 100}%`;
+        firefly.style.top = `${Math.random() * 100}%`;
+        firefly.style.animationDuration = `${Math.random() * 10 + 5}s`;
+        firefly.style.animationDelay = `${Math.random() * 5}s`;
+        firefliesContainer.appendChild(firefly);
+      }
+    </script>
+  </body>
+</html>

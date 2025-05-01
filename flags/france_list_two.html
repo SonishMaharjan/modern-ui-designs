@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ultimate French Flag Animations</title>
+    <style>
+      :root {
+        --french-blue: #0055a4;
+        --french-white: #ffffff;
+        --french-red: #ef4135;
+        --shadow-color: rgba(0, 0, 0, 0.2);
+      }
+
+      body {
+        font-family: "Segoe UI", system-ui, sans-serif;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        margin: 0;
+        padding: 40px 20px;
+        min-height: 100vh;
+        color: #212529;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        background: linear-gradient(
+          90deg,
+          var(--french-blue),
+          var(--french-red)
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: 0 2px 4px var(--shadow-color);
+      }
+
+      .subtitle {
+        font-size: 1.1rem;
+        color: #6c757d;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .flags-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 30px;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .flag-card {
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 6px 15px var(--shadow-color);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+      }
+
+      .flag-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .flag-title {
+        padding: 15px 20px;
+        margin: 0;
+        font-size: 1.3rem;
+        background: linear-gradient(90deg, #f8f9fa, white);
+        border-bottom: 1px solid #e9ecef;
+      }
+
+      .flag-description {
+        padding: 0 20px 15px;
+        font-size: 0.9rem;
+        color: #6c757d;
+        line-height: 1.5;
+      }
+
+      .flag {
+        height: 200px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+      }
+
+      .flag-stripe {
+        height: 100%;
+        width: 33.33%;
+      }
+
+      .blue {
+        background-color: var(--french-blue);
+      }
+      .white {
+        background-color: var(--french-white);
+      }
+      .red {
+        background-color: var(--french-red);
+      }
+
+      /* 1. Waving Flag */
+      .waving-flag {
+        overflow: hidden;
+      }
+
+      .waving-flag::before {
+        content: "";
+        position: absolute;
+        width: 300%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          var(--french-blue) 0%,
+          var(--french-blue) 33%,
+          var(--french-white) 33%,
+          var(--french-white) 66%,
+          var(--french-red) 66%,
+          var(--french-red) 100%
+        );
+        animation: wave 8s linear infinite;
+        transform-origin: 50% 50%;
+      }
+
+      @keyframes wave {
+        0% {
+          transform: translateX(0) skewX(0deg);
+        }
+        50% {
+          transform: translateX(-66.6%) skewX(8deg);
+        }
+        100% {
+          transform: translateX(-133.2%) skewX(0deg);
+        }
+      }
+
+      /* 2. Metallic Flag with Shine */
+      .metallic-flag .blue {
+        background: linear-gradient(135deg, #003366, #0055a4, #0077cc);
+      }
+      .metallic-flag .white {
+        background: linear-gradient(135deg, #d0d0d0, #ffffff, #e0e0e0);
+      }
+      .metallic-flag .red {
+        background: linear-gradient(135deg, #cc0000, #ef4135, #ff5555);
+      }
+
+      .metallic-flag::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          to bottom right,
+          rgba(255, 255, 255, 0) 45%,
+          rgba(255, 255, 255, 0.8) 50%,
+          rgba(255, 255, 255, 0) 55%
+        );
+        animation: shine 3s infinite;
+        opacity: 0.7;
+      }
+
+      @keyframes shine {
+        0% {
+          transform: rotate(45deg) translate(-30%, -30%);
+        }
+        100% {
+          transform: rotate(45deg) translate(30%, 30%);
+        }
+      }
+
+      /* 3. Neon Glow Flag */
+      .neon-flag {
+        box-shadow: 0 0 10px var(--french-blue), 0 0 20px var(--french-white),
+          0 0 30px var(--french-red);
+        animation: neon-pulse 3s infinite alternate;
+      }
+
+      @keyframes neon-pulse {
+        0% {
+          box-shadow: 0 0 10px var(--french-blue), 0 0 20px var(--french-white),
+            0 0 30px var(--french-red);
+        }
+        100% {
+          box-shadow: 0 0 20px var(--french-blue), 0 0 40px var(--french-white),
+            0 0 60px var(--french-red);
+        }
+      }
+
+      /* 4. 3D Folded Flag */
+      .folded-flag {
+        perspective: 1000px;
+        transform-style: preserve-3d;
+      }
+
+      .folded-flag .flag-stripe {
+        transition: transform 0.5s ease;
+        transform-origin: left center;
+      }
+
+      .folded-flag:hover .blue {
+        transform: rotateY(-20deg);
+      }
+
+      .folded-flag:hover .white {
+        transform: rotateY(-10deg);
+      }
+
+      /* 5. Particle Flag */
+      .particle-flag {
+        overflow: hidden;
+      }
+
+      .particle {
+        position: absolute;
+        background-color: white;
+        border-radius: 50%;
+        pointer-events: none;
+        animation: sparkle 2s infinite;
+      }
+
+      @keyframes sparkle {
+        0% {
+          transform: scale(0);
+          opacity: 0;
+        }
+        50% {
+          transform: scale(1);
+          opacity: 0.8;
+        }
+        100% {
+          transform: scale(0);
+          opacity: 0;
+        }
+      }
+
+      /* 6. Water Ripple Flag */
+      .water-flag {
+        overflow: hidden;
+        position: relative;
+      }
+
+      .water-flag::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+          circle at var(--x) var(--y),
+          rgba(255, 255, 255, 0.3) 0%,
+          rgba(255, 255, 255, 0) 20%
+        );
+        animation: ripple 4s infinite;
+        opacity: 0;
+      }
+
+      @keyframes ripple {
+        0% {
+          transform: scale(0);
+          opacity: 0.5;
+        }
+        100% {
+          transform: scale(2);
+          opacity: 0;
+        }
+      }
+
+      /* 7. Glass Morphism Flag */
+      .glass-flag {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      }
+
+      .glass-flag .blue {
+        background: rgba(0, 85, 164, 0.7);
+      }
+      .glass-flag .white {
+        background: rgba(255, 255, 255, 0.7);
+      }
+      .glass-flag .red {
+        background: rgba(239, 65, 53, 0.7);
+      }
+
+      /* 8. Color Shift Flag */
+      .color-shift-flag .blue {
+        animation: blue-shift 8s infinite alternate;
+      }
+      .color-shift-flag .white {
+        animation: white-shift 8s infinite alternate;
+      }
+      .color-shift-flag .red {
+        animation: red-shift 8s infinite alternate;
+      }
+
+      @keyframes blue-shift {
+        0% {
+          background-color: #003366;
+        }
+        50% {
+          background-color: #0077cc;
+        }
+        100% {
+          background-color: #0055a4;
+        }
+      }
+      @keyframes white-shift {
+        0% {
+          background-color: #f0f0f0;
+        }
+        50% {
+          background-color: #ffffff;
+        }
+        100% {
+          background-color: #e0e0e0;
+        }
+      }
+      @keyframes red-shift {
+        0% {
+          background-color: #cc0000;
+        }
+        50% {
+          background-color: #ff3333;
+        }
+        100% {
+          background-color: #ef4135;
+        }
+      }
+
+      /* 9. Flag Unfurling */
+      .unfurling-flag {
+        overflow: hidden;
+      }
+
+      .unfurling-flag .flag-stripe {
+        transform-origin: bottom;
+        animation: unfurl 1.5s ease-out forwards;
+      }
+
+      .unfurling-flag .blue {
+        animation-delay: 0.1s;
+      }
+      .unfurling-flag .white {
+        animation-delay: 0.3s;
+      }
+      .unfurling-flag .red {
+        animation-delay: 0.5s;
+      }
+
+      @keyframes unfurl {
+        0% {
+          transform: scaleY(0);
+        }
+        80% {
+          transform: scaleY(1.1);
+        }
+        100% {
+          transform: scaleY(1);
+        }
+      }
+
+      /* 10. Flag with Floating Emblems */
+      .emblem-flag {
+        position: relative;
+      }
+
+      .emblem {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        background-color: gold;
+        border-radius: 50%;
+        opacity: 0.7;
+        animation: float 6s infinite ease-in-out;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-20px) rotate(10deg);
+        }
+      }
+
+      /* 11. Flag with Border Animation */
+      .border-animation-flag {
+        position: relative;
+      }
+
+      .border-animation-flag::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: 4px solid transparent;
+        border-image: linear-gradient(
+            45deg,
+            var(--french-blue),
+            var(--french-white),
+            var(--french-red)
+          )
+          1;
+        animation: border-rotate 4s linear infinite;
+        z-index: 1;
+      }
+
+      @keyframes border-rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* 12. Flag with Scrolling Text */
+      .text-flag {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .flag-text {
+        position: absolute;
+        white-space: nowrap;
+        animation: scroll-text 20s linear infinite;
+        color: rgba(0, 0, 0, 0.2);
+        font-weight: bold;
+        font-size: 1.2rem;
+        z-index: 1;
+      }
+
+      @keyframes scroll-text {
+        0% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(100%);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Ultimate French Flag Animations</h1>
+      <p class="subtitle">
+        A collection of 12 modern CSS animations and effects showcasing the
+        French flag in various creative styles.
+      </p>
+    </header>
+
+    <div class="flags-container">
+      <!-- 1. Waving Flag -->
+      <div class="flag-card">
+        <h3 class="flag-title">Waving Flag</h3>
+        <p class="flag-description">
+          Simulates realistic fabric movement with a smooth waving motion.
+        </p>
+        <div class="flag waving-flag"></div>
+      </div>
+
+      <!-- 2. Metallic Flag -->
+      <div class="flag-card">
+        <h3 class="flag-title">Metallic Shine</h3>
+        <p class="flag-description">
+          Gradient colors with a dynamic light reflection that moves across the
+          surface.
+        </p>
+        <div class="flag metallic-flag">
+          <div class="flag-stripe blue"></div>
+          <div class="flag-stripe white"></div>
+          <div class="flag-stripe red"></div>
+        </div>
+      </div>
+
+      <!-- 3. Neon Flag -->
+      <div class="flag-card">
+        <h3 class="flag-title">Neon Glow</h3>
+        <p class="flag-description">
+          Pulsing neon glow effect that mimics vibrant LED lighting.
+        </p>
+        <div class="flag neon-flag">
+          <div class="flag-stripe blue"></div>
+          <div class="flag-stripe white"></div>
+          <div class="flag-stripe red"></div>
+        </div>
+      </div>
+
+      <!-- 4. 3D Folded Flag -->
+      <div class="flag-card">
+        <h3 class="flag-title">3D Folded</h3>
+        <p class="flag-description">
+          Interactive 3D effect that appears to fold when hovered.
+        </p>
+        <div class="flag folded-flag">
+          <div class="flag-stripe blue"></div>
+          <div class="flag-stripe white"></div>
+          <div class="flag-stripe red"></div>
+        </div>
+      </div>
+
+      <!-- 5. Particle Flag -->
+      <div class="flag-card">
+        <h3 class="flag-title">Particle Sparkles</h3>
+        <p class="flag-description">
+          Dynamic sparkling particles that appear randomly across the flag.
+        </p>
+        <div class="flag particle-flag" id="particle-flag">
+          <div class="flag-stripe blue"></div>
+          <div class="flag-stripe white"></div>
+          <div class="flag-stripe red"></div>
+        </div>
+      </div>
+
+      <!-- 6. Water Ripple Flag -->
+      <div class="flag-card">
+        <h3 class="flag-title">Water Ripple</h3>
+        <p class="flag-description">
+          Simulates gentle water ripples moving across the flag surface.
+        </p>
+        <div class="flag water-flag" id="water-flag">
+          <div class="flag-stripe blue"></div>
+          <div class="flag-stripe white"></div>
+          <div class="flag-stripe red"></div>
+        </div>
+      </div>
+
+      <!-- 7. Glass Morphism Flag -->
+      <div class="flag-card">
+        <h3 class="flag-title">Glass Morphism</h3>
+        <p class="flag-description">
+          Modern frosted glass effect with subtle blur and transparency.
+        </p>
+        <div class="flag glass-flag">
+          <div class="flag-stripe blue"></div>
+          <div class="flag-stripe white"></div>
+          <div class="flag-stripe red"></div>
+        </div>
+      </div>
+
+      <!-- 8. Color Shift Flag -->
+      <div class="flag-card">
+        <h3 class="flag-title">Color Shift</h3>
+        <p class="flag-description">
+          Smooth color transitions between different shades of each stripe.
+        </p>
+        <div class="flag color-shift-flag">
+          <div class="flag-stripe blue"></div>
+          <div class="flag-stripe white"></div>
+          <div class="flag-stripe red"></div>
+        </div>
+      </div>
+
+      <!-- 9. Unfurling Flag -->
+      <div class="flag-card">
+        <h3 class="flag-title">Unfurling</h3>
+        <p class="flag-description">
+          Animation that makes the flag appear to unfurl from the bottom up.
+        </p>
+        <div class="flag unfurling-flag">
+          <div class="flag-stripe blue"></div>
+          <div class="flag-stripe white"></div>
+          <div class="flag-stripe red"></div>
+        </div>
+      </div>
+
+      <!-- 10. Emblem Flag -->
+      <div class="flag-card">
+        <h3 class="flag-title">Floating Emblems</h3>
+        <p class="flag-description">
+          Decorative elements that float gently above the flag surface.
+        </p>
+        <div class="flag emblem-flag" id="emblem-flag">
+          <div class="flag-stripe blue"></div>
+          <div class="flag-stripe white"></div>
+          <div class="flag-stripe red"></div>
+        </div>
+      </div>
+
+      <!-- 11. Border Animation Flag -->
+      <div class="flag-card">
+        <h3 class="flag-title">Animated Border</h3>
+        <p class="flag-description">
+          Rotating gradient border that cycles through the flag colors.
+        </p>
+        <div class="flag border-animation-flag">
+          <div class="flag-stripe blue"></div>
+          <div class="flag-stripe white"></div>
+          <div class="flag-stripe red"></div>
+        </div>
+      </div>
+
+      <!-- 12. Text Flag -->
+      <div class="flag-card">
+        <h3 class="flag-title">Scrolling Text</h3>
+        <p class="flag-description">
+          Subtle text animation that scrolls across the flag surface.
+        </p>
+        <div class="flag text-flag">
+          <div class="flag-stripe blue"></div>
+          <div class="flag-stripe white"></div>
+          <div class="flag-stripe red"></div>
+          <div class="flag-text">
+            LIBERTÉ • ÉGALITÉ • FRATERNITÉ • LIBERTÉ • ÉGALITÉ • FRATERNITÉ
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Particle Flag Animation
+      const particleFlag = document.getElementById("particle-flag");
+      for (let i = 0; i < 30; i++) {
+        const particle = document.createElement("div");
+        particle.classList.add("particle");
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+        particle.style.width = `${Math.random() * 6 + 2}px`;
+        particle.style.height = particle.style.width;
+        particle.style.animationDelay = `${Math.random() * 2}s`;
+        particleFlag.appendChild(particle);
+      }
+
+      // Water Ripple Animation
+      const waterFlag = document.getElementById("water-flag");
+      waterFlag.addEventListener("mousemove", (e) => {
+        const rect = waterFlag.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        waterFlag.style.setProperty("--x", `${x}px`);
+        waterFlag.style.setProperty("--y", `${y}px`);
+
+        const ripple = document.createElement("div");
+        ripple.style.cssText = `
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: radial-gradient(
+                    circle at ${x}px ${y}px,
+                    rgba(255,255,255,0.3) 0%,
+                    rgba(255,255,255,0) 20%
+                );
+                animation: ripple 2s forwards;
+            `;
+        waterFlag.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 2000);
+      });
+
+      // Emblem Flag Animation
+      const emblemFlag = document.getElementById("emblem-flag");
+      for (let i = 0; i < 8; i++) {
+        const emblem = document.createElement("div");
+        emblem.classList.add("emblem");
+        emblem.style.left = `${Math.random() * 80 + 10}%`;
+        emblem.style.top = `${Math.random() * 80 + 10}%`;
+        emblem.style.animationDelay = `${Math.random() * 3}s`;
+        emblem.style.animationDuration = `${Math.random() * 4 + 3}s`;
+        emblemFlag.appendChild(emblem);
+      }
+    </script>
+  </body>
+</html>

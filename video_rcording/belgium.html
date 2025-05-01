@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: radial-gradient(circle at center, #4a5d73, #2a3445 80%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .flag-container {
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.07);
+      border-radius: 20px;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .flag {
+      display: grid;
+      grid-template-columns: repeat(3, 80px);
+      grid-template-rows: repeat(3, 50px);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .block {
+      width: 80px;
+      height: 50px;
+      opacity: 0;
+      transform: scale(0.6);
+      animation: appear 0.4s ease-out forwards;
+    }
+
+    .black {
+      background: linear-gradient(90deg, #232526, #414345, #232526);
+    }
+
+    .yellow {
+      background: linear-gradient(90deg, #f9d423, #e7d76d, #f9d423);
+    }
+
+    .red {
+      background: linear-gradient(90deg, #cb2d3e, #ef473a, #cb2d3e);
+    }
+
+    @keyframes appear {
+      0% {
+        opacity: 0;
+        transform: scale(0.6) translateY(20px);
+      }
+
+      60% {
+        opacity: 1;
+        transform: scale(1.05) translateY(-5px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+  </style>
+
+  <body>
+    <div class="flag-container">
+      <div class="flag" id="flag"></div>
+    </div>
+
+    <script>
+      const flag = document.getElementById("flag");
+      const colors = ["black", "yellow", "red"];
+
+      let delay = 0;
+
+      for (let row = 0; row < 3; row++) {
+        for (let col = 0; col < 3; col++) {
+          const block = document.createElement("div");
+          block.className = `block ${colors[col]}`;
+          block.style.animationDelay = `${delay}s`;
+          delay += 0.2;
+          flag.appendChild(block);
+        }
+      }
+    </script>
+  </body>
+</html>
