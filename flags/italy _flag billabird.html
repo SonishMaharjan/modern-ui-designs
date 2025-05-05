@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Italy Flag with Billiard Ball Effect</title>
+    <style>
+      body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f2f2f2;
+      }
+
+      .flag {
+        display: grid;
+        grid-template-columns: repeat(
+          3,
+          100px
+        ); /* 3 columns for the 3 stripes */
+        grid-gap: 2px;
+        width: 300px;
+        height: 200px;
+        position: relative;
+        margin: 20px;
+        border: 2px solid #000;
+      }
+
+      /* Billiard Ball "pixel" effect */
+      .ball {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.4),
+          inset 0 0 5px rgba(255, 255, 255, 0.5);
+        transition: transform 0.2s;
+        background: radial-gradient(circle at 30%, #fff, #bbb);
+      }
+
+      .ball:hover {
+        transform: scale(1.2); /* Slight zoom on hover */
+      }
+
+      .green {
+        background: radial-gradient(circle at 30%, #3dc74a 20%, #017c3e);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3),
+          inset 0 0 10px rgba(0, 0, 0, 0.4);
+      }
+
+      .white {
+        background: radial-gradient(circle at 30%, #ffffff 20%, #f2f2f2);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3),
+          inset 0 0 10px rgba(0, 0, 0, 0.4);
+      }
+
+      .red {
+        background: radial-gradient(circle at 30%, #fb5858 1%, #ce2b37);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3),
+          inset 0 0 10px rgba(0, 0, 0, 0.4);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flag">
+      <!-- Green Stripe -->
+      <div class="ball green"></div>
+      <div class="ball green"></div>
+      <div class="ball green"></div>
+      <div class="ball green"></div>
+      <div class="ball green"></div>
+      <div class="ball green"></div>
+      <div class="ball green"></div>
+      <div class="ball green"></div>
+      <div class="ball green"></div>
+
+      <!-- White Stripe -->
+      <div class="ball white"></div>
+      <div class="ball white"></div>
+      <div class="ball white"></div>
+      <div class="ball white"></div>
+      <div class="ball white"></div>
+      <div class="ball white"></div>
+      <div class="ball white"></div>
+      <div class="ball white"></div>
+      <div class="ball white"></div>
+
+      <!-- Red Stripe -->
+      <div class="ball red"></div>
+      <div class="ball red"></div>
+      <div class="ball red"></div>
+      <div class="ball red"></div>
+      <div class="ball red"></div>
+      <div class="ball red"></div>
+      <div class="ball red"></div>
+      <div class="ball red"></div>
+      <div class="ball red"></div>
+    </div>
+  </body>
+</html>

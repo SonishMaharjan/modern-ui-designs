@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ghost Trail Rotation</title>
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
+
+      .line-container {
+        position: relative;
+      }
+
+      .line,
+      .rotating-line {
+        width: 52px;
+        background: linear-gradient(to bottom, #0033cc, #0099ff);
+        border-radius: 12px;
+      }
+
+      .line {
+        height: 1829px;
+      }
+
+      .rotating-line {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 1700px;
+        transform-origin: top center;
+
+        animation: springRotate 1.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+      }
+
+      /* Trail Effect */
+      .trail {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 52px;
+        height: 1700px;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 51, 204, 0.3),
+          rgba(0, 153, 255, 0.3)
+        );
+        border-radius: 12px;
+        transform-origin: top center;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      @keyframes springRotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        50% {
+          transform: rotate(-75deg);
+        }
+        70% {
+          transform: rotate(-58deg);
+        }
+        85% {
+          transform: rotate(-62deg);
+        }
+        95% {
+          transform: rotate(-59deg);
+        }
+        100% {
+          transform: rotate(-60deg);
+        }
+      }
+
+      @keyframes trailFade {
+        0% {
+          opacity: 0.4;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="line-container">
+      <div class="line"></div>
+      <div class="rotating-line" id="rotatingLine"></div>
+    </div>
+
+    <script>
+      const container = document.querySelector(".line-container");
+      const mainLine = document.getElementById("rotatingLine");
+
+      let steps = 5;
+      for (let i = 1; i <= steps; i++) {
+        const clone = mainLine.cloneNode(true);
+        clone.classList.remove("rotating-line");
+        clone.classList.add("trail");
+        clone.style.animation = "trailFade 1s ease-out forwards";
+        clone.style.transform = `rotate(${-60 * (i / steps)}deg)`;
+        clone.style.animationDelay = `${i * 0.05}s`;
+        container.appendChild(clone);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ashoka Chakra - Responsive</title>
+    <style>
+      body {
+        margin: 0;
+        background: #fff;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .container {
+        width: 200px;
+        height: 200px;
+        position: relative;
+      }
+
+      .chakra {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        border: 9px solid royalblue;
+        border-radius: 50%;
+        box-shadow: 0 0 20px royalblue;
+      }
+
+      .needle {
+        position: absolute;
+        width: 49%;
+        height: 4.5%;
+        top: 50%;
+        left: 50%;
+        background: linear-gradient(90deg, royalblue, #00d4ff);
+        clip-path: polygon(43% 0, 100% 50%, 43% 100%, 0 50%);
+        transform-origin: left center;
+        filter: drop-shadow(0 0 4px #00d4ff);
+        opacity: 0;
+      }
+
+      .chakra-dot {
+        position: absolute;
+        width: 5.5%;
+        height: 5.5%;
+        /* background: radial-gradient(circle, #00d4ff, royalblue); */
+        background: royalblue;
+
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        filter: drop-shadow(0 0 5px #00d4ff);
+        opacity: 0;
+        z-index: -1;
+      }
+
+      .center-dot {
+        position: absolute;
+        width: 20%;
+        height: 20%;
+        background: royalblue;
+        opacity: 0;
+
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        filter: drop-shadow(0 0 5px #00d4ff);
+        z-index: 5;
+      }
+
+      .chakra-dot::after {
+        content: "";
+        position: absolute;
+        width: 200%;
+        height: 200%;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background: #00d4ff33;
+        opacity: 0;
+        animation: ripple 1.5s ease-out forwards;
+        animation-delay: 4s;
+        z-index: -1;
+      }
+
+      @keyframes ripple {
+        0% {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 0.9;
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(3);
+          opacity: 0;
+        }
+      }
+
+      @keyframes pluck {
+        0% {
+          transform: translate(-50%, -50%) scale(1);
+        }
+        30% {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1.5);
+        }
+        60% {
+          transform: translate(-50%, -50%) scale(0.85);
+        }
+        80% {
+          transform: translate(-50%, -50%) scale(1.1);
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 1;
+        }
+      }
+
+      @keyframes rotateNeedle {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(var(--angle));
+          opacity: 1;
+        }
+      }
+
+      .needle-anim {
+        animation: rotateNeedle 1.2s ease-in-out forwards;
+      }
+
+      .dot-anim {
+        animation: pluck 3s ease-out forwards;
+        animation-delay: 4s;
+      }
+
+      .center-dot-anim {
+        animation: pluck 3s ease-out forwards;
+        animation-delay: 2s;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="chakra" id="chakra"></div>
+    </div>
+
+    <script>
+      const chakra = document.getElementById("chakra");
+      const needleCount = 24;
+
+      for (let i = 0; i < needleCount; i++) {
+        const angle = (i * 360) / needleCount;
+        const rad = (angle * Math.PI) / 180;
+
+        const needle = document.createElement("div");
+        needle.className = "needle needle-anim";
+        needle.style.setProperty("--angle", `${angle}deg`);
+        needle.style.animationDelay = `${i * 0.05}s`;
+        needle.style.transform = `rotate(${angle}deg)`;
+        chakra.appendChild(needle);
+      }
+
+      for (let i = 0; i < needleCount; i++) {
+        const angle = (i * 360) / needleCount + 360 / (needleCount * 2); // offset 7.5°
+        const dot = document.createElement("div");
+        dot.className = "chakra-dot dot-anim";
+
+        // Use percentage-based radius (~51% to slightly overlap border)
+        const radiusPercent = 51;
+        dot.style.left = `${
+          50 + radiusPercent * Math.cos((angle * Math.PI) / 180)
+        }%`;
+        dot.style.top = `${
+          50 + radiusPercent * Math.sin((angle * Math.PI) / 180)
+        }%`;
+
+        dot.style.animationDelay = `${i * 0.05 + 0.8}s`;
+        chakra.appendChild(dot);
+      }
+
+      const centerDot = document.createElement("div");
+      centerDot.className = "center-dot";
+
+      centerDot.className = "center-dot center-dot-anim";
+
+      centerDot.style.left = "50%";
+      centerDot.style.top = "51%";
+
+      chakra.appendChild(centerDot);
+    </script>
+  </body>
+</html>

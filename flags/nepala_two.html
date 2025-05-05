@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ghost Trail Rotation</title>
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
+
+      .line-container {
+        position: relative;
+      }
+
+      .line,
+      .rotating-line {
+        width: 52px;
+        background: linear-gradient(to bottom, #0033cc, #0099ff);
+        border-radius: 12px;
+      }
+
+      .line {
+        height: 1829px;
+      }
+
+      .rotating-line {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 1700px;
+        transform-origin: top center;
+      }
+
+      .trail {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 52px;
+        height: 1700px;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 51, 204, 0.3),
+          rgba(0, 153, 255, 0.3)
+        );
+        border-radius: 12px;
+        transform-origin: top center;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      @keyframes springRotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        50% {
+          transform: rotate(-75deg);
+        }
+        70% {
+          transform: rotate(-58deg);
+        }
+        85% {
+          transform: rotate(-62deg);
+        }
+        95% {
+          transform: rotate(-59deg);
+        }
+        100% {
+          transform: rotate(-60deg);
+        }
+      }
+
+      @keyframes trailFade {
+        0% {
+          opacity: 0.4;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="line-container">
+      <div class="line"></div>
+    </div>
+
+    <script>
+      const container = document.querySelector(".line-container");
+
+      function addRotatingLine({
+        id = "",
+        height = 1700,
+        width = 52,
+        rotateTo = -60,
+        trailSteps = 5,
+        animationDuration = 1.6,
+      } = {}) {
+        // Create main rotating line
+        const line = document.createElement("div");
+        line.classList.add("rotating-line");
+        if (id) line.id = id;
+
+        // Apply dynamic styles
+        line.style.height = `${height}px`;
+        line.style.width = `${width}px`;
+        line.style.animation = `rotate-${id} ${animationDuration}s cubic-bezier(0.25, 1, 0.5, 1) forwards`;
+
+        // Add custom keyframes
+        const keyframes = `
+          @keyframes rotate-${id} {
+            0% { transform: rotate(0deg); }
+            50% { transform: rotate(${rotateTo - 15}deg); }
+            70% { transform: rotate(${rotateTo + 2}deg); }
+            85% { transform: rotate(${rotateTo - 2}deg); }
+            95% { transform: rotate(${rotateTo + 1}deg); }
+            100% { transform: rotate(${rotateTo}deg); }
+          }
+        `;
+        const styleSheet = document.createElement("style");
+        styleSheet.textContent = keyframes;
+        document.head.appendChild(styleSheet);
+
+        container.appendChild(line);
+
+        // Add trail steps
+        for (let i = 1; i <= trailSteps; i++) {
+          const trail = document.createElement("div");
+          trail.classList.add("trail");
+          trail.style.width = `${width}px`;
+          trail.style.height = `${height}px`;
+          trail.style.transform = `rotate(${rotateTo * (i / trailSteps)}deg)`;
+          trail.style.animation = "trailFade 1s ease-out forwards";
+          trail.style.animationDelay = `${i * 0.05}s`;
+          container.appendChild(trail);
+        }
+      }
+
+      // ✅ Examples:
+      addRotatingLine({
+        id: "rotatingLineOne",
+        height: 1700,
+        rotateTo: -60,
+      });
+
+      addRotatingLine({
+        id: "rotatingLineTwo",
+        height: 1600,
+        rotateTo: -45,
+        width: 40,
+        animationDuration: 2,
+        trailSteps: 6,
+      });
+    </script>
+  </body>
+</html>

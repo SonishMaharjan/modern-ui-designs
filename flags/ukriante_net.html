@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ukraine Flag - Net Texture</title>
+    <style>
+      body {
+        margin: 0;
+        background: linear-gradient(145deg, #10141c, #1a1f2b);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .flag {
+        position: relative;
+        width: 420px;
+        height: 280px;
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        animation: shimmer 8s infinite linear alternate;
+      }
+
+      .stripe {
+        height: 50%;
+        width: 100%;
+      }
+
+      .top {
+        background: linear-gradient(to bottom, #005bbb, #3399ff);
+      }
+
+      .bottom {
+        background: linear-gradient(to bottom, #ffd500, #ffeb99);
+      }
+
+      .net-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.05) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.05) 1px,
+            transparent 1px
+          );
+        background-size: 12px 12px;
+        pointer-events: none;
+        mix-blend-mode: screen;
+        animation: moveGrid 10s linear infinite;
+      }
+
+      @keyframes shimmer {
+        0% {
+          filter: brightness(1);
+        }
+        50% {
+          filter: brightness(1.15);
+        }
+        100% {
+          filter: brightness(1);
+        }
+      }
+
+      @keyframes moveGrid {
+        0% {
+          background-position: 0 0;
+        }
+        100% {
+          background-position: 12px 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flag">
+      <div class="stripe top"></div>
+      <div class="stripe bottom"></div>
+      <div class="net-overlay"></div>
+    </div>
+  </body>
+</html>

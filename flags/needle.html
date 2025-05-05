@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animated Watch Needle</title>
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .clock {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        border: 4px solid #0f52ba;
+        box-shadow: 0 0 20px #0f52ba;
+      }
+      .needle-3 {
+        position: absolute;
+        width: 10px;
+        height: 130px;
+        background: #4a90e2;
+        top: 20px;
+        left: 50%;
+        transform-origin: bottom center;
+        filter: blur(1px);
+        /* animation: rotateNeedle 2.7s ease-in-out forwards; */
+
+        /* Elongated Diamond Shape */
+        /* clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); */
+      }
+
+      .circle {
+        position: relative;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        /* border: 4px solid #0f52ba; */
+        border: 4px solid red;
+
+        box-shadow: 0 0 20px #0f52ba;
+      }
+
+      .trail {
+        position: absolute;
+        width: 7px;
+        height: 130px;
+        top: 20px;
+        left: 50%;
+        transform-origin: bottom center;
+        transition: transform 0.3s ease;
+
+        /* Ashoka Chakra Gradient */
+        background: linear-gradient(
+          to bottom,
+          #0f52ba 0%,
+          /* Bright Ashoka tip */ #003366 70%,
+          /* Deeper Ashoka mid */ #000080 100% /* Classic base */
+        );
+
+        clip-path: polygon(50% 0%, 100% 68%, 50% 100%, 0% 68%);
+        opacity: 0.95;
+
+        /* Glow & Shadow */
+        box-shadow: 0 0 10px rgba(15, 82, 186, 0.6),
+          0 0 25px rgba(0, 51, 102, 0.4), inset 0 0 5px rgba(255, 255, 255, 0.2);
+      }
+
+      @keyframes rotateNeedle {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="clock" id="clock">
+      <div class="needle" id="needle"></div>
+    </div>
+
+    <script>
+      const totalNeedles = 24; // Change this to 12, 24, 60, etc.
+      const needle = document.getElementById("needle");
+      const clock = document.getElementById("clock");
+
+      let current = 0;
+      const delay = 3000 / totalNeedles;
+
+      function leaveTrail(angle) {
+        const trail = document.createElement("div");
+        const circle = document.createElement("div");
+
+        trail.classList.add("trail");
+
+        circle.classList.add("circle");
+
+        trail.style.transform = `rotate(${angle}deg)`;
+        circle.style.transform = `rotate(${angle}deg)`;
+
+        clock.appendChild(trail);
+        clock.appendChild(circle);
+      }
+
+      function animateNeedle() {
+        if (current > totalNeedles) return;
+
+        const angle = (360 / totalNeedles) * current;
+        needle.style.transform = `rotate(${angle}deg)`;
+
+        leaveTrail(angle);
+
+        current++;
+        setTimeout(animateNeedle, delay);
+      }
+
+      setTimeout(animateNeedle, 200);
+    </script>
+  </body>
+</html>
