@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ghost Trail Rotation</title>
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        /* background: linear-gradient(135deg, #eef0f1, #a0cfdf, #ccd9df);
+           */
+        /* background: grey; */
+
+        background: linear-gradient(
+          145deg,
+          #f1f8e9 0%,
+          #a7ffeb 30%,
+          #263238 100%
+        );
+
+        background-size: 400% 400%;
+        animation: gradientShift 15s ease infinite;
+        overflow: hidden;
+      }
+
+      .flag-container {
+        position: relative;
+        height: 100%;
+        display: flex;
+
+        justify-content: center;
+        align-items: center;
+      }
+
+      .flag {
+        position: relative;
+        height: 580px;
+        width: 600px;
+      }
+
+      .crimson {
+        position: relative;
+        height: 580px;
+        width: 600px;
+        background: radial-gradient(
+          circle at 30% 30%,
+          #ff8a8a,
+          #d64545,
+          #a31e1e
+        );
+      }
+
+      .flag-background {
+        position: absolute;
+
+        clip-path: polygon(2% 3%, 78% 50%, 27% 50%, 75% 100%, 1% 100%);
+        overflow: hidden;
+        z-index: -10;
+
+        border: 3px solid black;
+      }
+
+      .moon-clipper {
+        /* background: blue; */
+        position: absolute;
+        z-index: 9;
+
+        clip-path: circle(14% at 20% 28%);
+      }
+
+      .flag::before {
+        content: "";
+        position: absolute;
+        top: -30%;
+        left: -30%;
+        width: 160%;
+        height: 160%;
+        background: radial-gradient(
+          left top,
+          rgba(255, 255, 255, 0.15) 0%,
+          transparent 60%
+        );
+        animation: spotlight 1s ease-in-out infinite alternate;
+        pointer-events: none;
+      }
+
+      @keyframes spotlight {
+        0% {
+          transform: translate(0%, 0%);
+        }
+        50% {
+          transform: translate(10%, 10%);
+        }
+        100% {
+          transform: translate(-10%, -5%);
+        }
+      }
+      /* Nepal flag border - Lighter Blue Version */
+      .border {
+        width: 23px;
+        border-radius: 40px;
+        position: absolute;
+        z-index: 10;
+
+        /* Smooth, glassy blue gradient */
+
+        background: radial-gradient(
+          circle at center,
+          #4da6ff 0%,
+          #1e62d0 50%,
+          #1e4496 100%
+        );
+
+        /* background: radial-gradient(
+            circle at center,
+            #4da6ff 0%,
+            #1e4496 50%,
+            #4da6ff 100%
+          ); */
+        /* background: radial-gradient(
+            circle at center,
+            #4da6ff 0%,
+            #4da6ff 50%,
+            #5483e9 100%
+          ); */
+        /*
+          background: radial-gradient(
+            circle at center,
+            #4f9eee 0%,
+            #1e62d0 50%,
+            #3168df 100%
+          ); */
+
+        /* background: radial-gradient(
+            circle at center,
+            #3a8fe4 0%,
+            #1e62d0 50%,
+            #1e4496 100%
+          ); */
+
+        background-size: 100% 200%;
+        background-repeat: no-repeat;
+        animation: gradientWave 3s ease-in-out infinite alternate-reverse;
+
+        /* Glassmorphism */
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        border: 1px solid rgba(184, 13, 13, 0.15);
+        background-clip: padding-box;
+
+        /* Glow effect */
+        box-shadow: 0 0 12px rgba(0, 180, 255, 0.2),
+          0 0 24px rgba(0, 120, 255, 0.2), 0 0 48px rgba(0, 90, 200, 0.2);
+      }
+
+      .border-one {
+        height: 590px;
+        animation: gradientWave 3s ease-in-out infinite alternate;
+      }
+      .border-two {
+        height: 548px;
+        left: 225px;
+        top: -126px;
+        transform: rotate(-57.9deg);
+
+        animation: gradientWave 3s ease-in-out infinite alternate;
+      }
+
+      .border-three {
+        height: 314px;
+        left: 300px;
+        top: 132px;
+        transform: rotate(90deg);
+        animation: gradientWave 3s ease-in-out infinite alternate-reverse;
+      }
+
+      .border-four {
+        height: 431px;
+        left: 298px;
+        top: 219px;
+        transform: rotate(-45.09deg);
+
+        animation: gradientWave 3s ease-in-out infinite alternate;
+      }
+
+      .border-five {
+        height: 460px;
+        left: 222px;
+        top: 352px;
+        transform: rotate(90deg);
+
+        animation: gradientWave 3s ease-in-out infinite alternate-reverse;
+      }
+
+      .sun {
+        position: absolute;
+        height: 100px;
+        width: 100px;
+        top: 376px;
+        left: 62px;
+        background: radial-gradient(
+          circle at center,
+          #ffffff 0%,
+          #f0f8ff 40%,
+          #cce7ff 80%,
+          rgba(0, 149, 255, 0.2) 100%
+        );
+
+        border-radius: 50%;
+
+        /* Soft glow */
+        box-shadow: 0 0 12px rgba(255, 255, 255, 0.1),
+          0 0 24px rgba(0, 180, 255, 0.1), 0 0 36px rgba(0, 120, 255, 0.1);
+
+        /* Glowing animation */
+        animation: sunPulse 3s ease-in-out infinite;
+        z-index: 50;
+      }
+
+      .moon {
+        z-index: 8;
+
+        position: absolute;
+        height: 150px;
+        width: 150px;
+        top: 114px;
+        left: 44px;
+        background: radial-gradient(
+          circle at center,
+          #ffffff 0%,
+          #f0f8ff 40%,
+          #cce7ff 80%,
+          rgba(0, 149, 255, 0.2) 100%
+        );
+        border-radius: 50%;
+
+        /* Glowing animation */
+        animation: moonPulse 3s ease-in-out infinite;
+      }
+
+      @keyframes moonPulse {
+        0% {
+          transform: scale(1);
+          /* box-shadow: 0 0 12px rgba(255, 255, 255, 0.6),
+              0 0 24px rgba(0, 180, 255, 0.4), 0 0 36px rgba(0, 120, 255, 0.2); */
+        }
+        50% {
+          transform: scale(1.1);
+          /* box-shadow: 0 0 20px rgba(255, 255, 255, 0.7),
+              0 0 36px rgba(0, 180, 255, 0.5), 0 0 48px rgba(0, 120, 255, 0.3); */
+        }
+        100% {
+          transform: scale(1);
+          /* box-shadow: 0 0 12px rgba(255, 255, 255, 0.6),
+              0 0 24px rgba(0, 180, 255, 0.4), 0 0 36px rgba(0, 120, 255, 0.2); */
+        }
+      }
+
+      @keyframes sunPulse {
+        0% {
+          transform: scale(0.7);
+          /* box-shadow: 0 0 12px rgba(255, 255, 255, 0.6),
+              0 0 24px rgba(0, 180, 255, 0.4), 0 0 36px rgba(0, 120, 255, 0.2); */
+        }
+        50% {
+          transform: scale(0.8);
+          /* box-shadow: 0 0 20px rgba(255, 255, 255, 0.7),
+              0 0 36px rgba(0, 180, 255, 0.5), 0 0 48px rgba(0, 120, 255, 0.3); */
+        }
+        100% {
+          transform: scale(0.7);
+          /* box-shadow: 0 0 12px rgba(255, 255, 255, 0.6),
+              0 0 24px rgba(0, 180, 255, 0.4), 0 0 36px rgba(0, 120, 255, 0.2); */
+        }
+      }
+
+      @keyframes gradientWave {
+        0% {
+          background-position: 0% 0%;
+        }
+        100% {
+          background-position: 0% 100%;
+        }
+      }
+
+      .flag-img {
+        position: absolute;
+        height: 590px;
+        top: 0px;
+        width: auto;
+        opacity: 0.5;
+      }
+
+      .spike {
+        position: absolute;
+        top: -32px;
+        left: 44px;
+        width: 27px;
+        height: 169px;
+        background: radial-gradient(
+          circle at center,
+          #ffffff 0%,
+          #f0f8ff 40%,
+          #cce7ff 80%
+        );
+        z-index: 10;
+        clip-path: polygon(50% 0, 100% 20%, 100% 80%, 50% 100%, 0% 80%, 0% 20%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flag-container">
+      <div class="flag">
+        <div class="border border-one"></div>
+        <div class="border border-two"></div>
+        <div class="border border-three"></div>
+        <div class="border border-four"></div>
+        <div class="border border-five"></div>
+        <div class="crimson flag-background"></div>
+        <div class="moon"></div>
+        <div class="crimson moon-clipper"></div>
+
+        <div class="sun" id="sun">
+          <div class="spike"></div>
+        </div>
+        <!-- <img class="flag-img" src="nepal.png" /> -->
+      </div>
+    </div>
+
+    <script>
+      const sun = document.getElementById("sun");
+
+      for (let i = 0; i < 6; i++) {
+        const spike = document.createElement("div");
+        spike.classList.add("spike");
+
+        // Rotate around the center like clock hands
+        spike.style.transform = `rotate(${i * 30}deg)`;
+
+        sun.appendChild(spike);
+      }
+    </script>
+  </body>
+</html>

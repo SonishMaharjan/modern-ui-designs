@@ -6,48 +6,45 @@
     <style>
       body {
         margin: 0;
-        background: radial-gradient(circle at center, #111, #000);
         animation: bgGlow 6s ease-in-out infinite;
         height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
+        background: radial-gradient(circle at center, #333, #111);
       }
 
       .flag {
         display: grid;
         grid-template-columns: repeat(30, 14px);
         grid-template-rows: repeat(20, 14px);
-        gap: 2px;
-        padding: 10px;
-        border-radius: 10px;
+        gap: 1px;
       }
 
       .bead {
         width: 14px;
         height: 14px;
         border-radius: 50%;
-        background: radial-gradient(circle at 30% 30%, #eee, #999);
-        box-shadow: inset -1px -1px 2px rgba(255, 255, 255, 0.6),
-          inset 1px 1px 2px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.4);
+      }
+
+      .black {
+        background: #000;
+        box-shadow: none;
+        opacity: 0.2;
       }
 
       .red {
         background: radial-gradient(circle at 30% 30%, #ffaaaa, #cc0000);
+        box-shadow: inset -1px -1px 2px rgba(255, 180, 180, 0.7),
+          inset 1px 1px 2px rgba(80, 0, 0, 0.5), 0 2px 3px rgba(0, 0, 0, 0.6),
+          0 0 10px rgba(255, 0, 0, 0.8), 0 0 20px rgba(255, 0, 0, 0.5);
       }
 
       .white {
         background: radial-gradient(circle at 30% 30%, #fff, #ccc);
-      }
-
-      @keyframes bgGlow {
-        0%,
-        100% {
-          background: radial-gradient(circle at center, #111, #000);
-        }
-        50% {
-          background: radial-gradient(circle at center, #333, #111);
-        }
+        box-shadow: inset -1px -1px 2px rgba(255, 255, 255, 0.6),
+          inset 1px 1px 2px rgba(0, 0, 0, 0.3), 0 2px 3px rgba(0, 0, 0, 0.5),
+          0 0 10px rgba(255, 255, 255, 0.7), 0 0 15px rgba(255, 255, 255, 0.4);
       }
     </style>
   </head>
@@ -58,14 +55,29 @@
       const flag = document.getElementById("indonesia-flag");
       const rows = 20;
       const cols = 30;
+      const beadGrid = [];
 
       for (let y = 0; y < rows; y++) {
+        const row = [];
         for (let x = 0; x < cols; x++) {
           const bead = document.createElement("div");
-          bead.classList.add("bead");
-          bead.classList.add(y < 10 ? "red" : "white");
+          bead.classList.add("bead", "black");
           flag.appendChild(bead);
+          row.push(bead);
         }
+        beadGrid.push(row);
+      }
+
+      function lightUpRow(rowIndex) {
+        const colorClass = rowIndex < 10 ? "red" : "white";
+        for (let bead of beadGrid[rowIndex]) {
+          bead.classList.remove("black");
+          bead.classList.add(colorClass);
+        }
+      }
+
+      for (let i = 0; i < rows; i++) {
+        setTimeout(() => lightUpRow(i), i * 200 + 2000); // 150ms delay per row
       }
     </script>
   </body>
