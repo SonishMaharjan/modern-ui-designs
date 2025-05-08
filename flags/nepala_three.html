@@ -65,7 +65,7 @@
         position: absolute;
         z-index: 9;
 
-        clip-path: circle(14% at 20% 28%);
+        clip-path: circle(13% at 20% 27%);
       }
 
       .flag::before {
@@ -206,6 +206,8 @@
           rgba(0, 149, 255, 0.2) 100%
         );
 
+        background: transparent;
+
         border-radius: 50%;
 
         /* Soft glow */
@@ -225,13 +227,14 @@
         width: 150px;
         top: 114px;
         left: 44px;
-        background: radial-gradient(
+        /* background: radial-gradient(
           circle at center,
           #ffffff 0%,
           #f0f8ff 40%,
           #cce7ff 80%,
           rgba(0, 149, 255, 0.2) 100%
-        );
+        ); */
+        background: #f0f8ff;
         border-radius: 50%;
 
         /* Glowing animation */
@@ -240,17 +243,17 @@
 
       @keyframes moonPulse {
         0% {
-          transform: scale(1);
+          transform: scale(0.9);
           /* box-shadow: 0 0 12px rgba(255, 255, 255, 0.6),
               0 0 24px rgba(0, 180, 255, 0.4), 0 0 36px rgba(0, 120, 255, 0.2); */
         }
         50% {
-          transform: scale(1.1);
+          transform: scale(1);
           /* box-shadow: 0 0 20px rgba(255, 255, 255, 0.7),
               0 0 36px rgba(0, 180, 255, 0.5), 0 0 48px rgba(0, 120, 255, 0.3); */
         }
         100% {
-          transform: scale(1);
+          transform: scale(0.9);
           /* box-shadow: 0 0 12px rgba(255, 255, 255, 0.6),
               0 0 24px rgba(0, 180, 255, 0.4), 0 0 36px rgba(0, 120, 255, 0.2); */
         }
@@ -306,6 +309,29 @@
         z-index: 10;
         clip-path: polygon(50% 0, 100% 20%, 100% 80%, 50% 100%, 0% 80%, 0% 20%);
       }
+
+      .moon-spike {
+        position: absolute;
+        top: -12px;
+        left: 44px;
+
+        width: 17.25px;
+        height: 115px;
+        background: #f0f8ff;
+        z-index: 10;
+        clip-path: polygon(50% 0, 100% 20%, 100% 80%, 50% 100%, 0% 80%, 0% 20%);
+      }
+
+      .moon-spike-seven {
+        top: 183px;
+        left: 80px;
+        z-index: 51;
+        position: absolute;
+        animation: sunPulse 3s ease-in-out infinite;
+      }
+
+      .moon-wrapper {
+      }
     </style>
   </head>
   <body>
@@ -317,12 +343,13 @@
         <div class="border border-four"></div>
         <div class="border border-five"></div>
         <div class="crimson flag-background"></div>
-        <div class="moon"></div>
-        <div class="crimson moon-clipper"></div>
-
-        <div class="sun" id="sun">
-          <div class="spike"></div>
+        <div class="moon-wrapper">
+          <div class="moon"></div>
+          <div class="crimson moon-clipper"></div>
+          <div class="moon-spike-seven" id="moon-spike-seven"></div>
         </div>
+
+        <div class="sun" id="sun"></div>
         <!-- <img class="flag-img" src="nepal.png" /> -->
       </div>
     </div>
@@ -338,6 +365,18 @@
         spike.style.transform = `rotate(${i * 30}deg)`;
 
         sun.appendChild(spike);
+      }
+
+      const moonSpike = document.getElementById("moon-spike-seven");
+
+      for (let i = 0; i < 6; i++) {
+        const spike = document.createElement("div");
+        spike.classList.add("moon-spike");
+
+        // Rotate around the center like clock hands
+        spike.style.transform = `rotate(${i * 30}deg)`;
+
+        moonSpike.appendChild(spike);
       }
     </script>
   </body>
