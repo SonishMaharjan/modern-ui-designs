@@ -7,9 +7,6 @@
       body {
         margin: 0;
         height: 100vh;
-        /* background: linear-gradient(135deg, #eef0f1, #a0cfdf, #ccd9df);
-           */
-        /* background: grey; */
 
         background: linear-gradient(
           145deg,
@@ -19,7 +16,6 @@
         );
 
         background-size: 400% 400%;
-        animation: gradientShift 15s ease infinite;
         overflow: hidden;
       }
 
@@ -27,7 +23,6 @@
         position: relative;
         height: 100%;
         display: flex;
-
         justify-content: center;
         align-items: center;
       }
@@ -52,57 +47,21 @@
 
       .flag-background {
         position: absolute;
-
         clip-path: polygon(2% 3%, 78% 50%, 27% 50%, 75% 100%, 1% 100%);
         overflow: hidden;
-        z-index: -10;
-
-        border: 3px solid black;
       }
 
       .moon-clipper {
-        /* background: blue; */
         position: absolute;
         z-index: 9;
-
         clip-path: circle(13% at 20% 27%);
       }
 
-      .flag::before {
-        content: "";
-        position: absolute;
-        top: -30%;
-        left: -30%;
-        width: 160%;
-        height: 160%;
-        background: radial-gradient(
-          left top,
-          rgba(255, 255, 255, 0.15) 0%,
-          transparent 60%
-        );
-        animation: spotlight 1s ease-in-out infinite alternate;
-        pointer-events: none;
-      }
-
-      @keyframes spotlight {
-        0% {
-          transform: translate(0%, 0%);
-        }
-        50% {
-          transform: translate(10%, 10%);
-        }
-        100% {
-          transform: translate(-10%, -5%);
-        }
-      }
-      /* Nepal flag border - Lighter Blue Version */
       .border {
         width: 23px;
         border-radius: 40px;
         position: absolute;
         z-index: 10;
-
-        /* Smooth, glassy blue gradient */
 
         background: radial-gradient(
           circle at center,
@@ -111,36 +70,8 @@
           #1e4496 100%
         );
 
-        /* background: radial-gradient(
-            circle at center,
-            #4da6ff 0%,
-            #1e4496 50%,
-            #4da6ff 100%
-          ); */
-        /* background: radial-gradient(
-            circle at center,
-            #4da6ff 0%,
-            #4da6ff 50%,
-            #5483e9 100%
-          ); */
-        /*
-          background: radial-gradient(
-            circle at center,
-            #4f9eee 0%,
-            #1e62d0 50%,
-            #3168df 100%
-          ); */
-
-        /* background: radial-gradient(
-            circle at center,
-            #3a8fe4 0%,
-            #1e62d0 50%,
-            #1e4496 100%
-          ); */
-
         background-size: 100% 200%;
         background-repeat: no-repeat;
-        animation: gradientWave 3s ease-in-out infinite alternate-reverse;
 
         /* Glassmorphism */
         backdrop-filter: blur(6px);
@@ -157,6 +88,7 @@
         height: 590px;
         animation: gradientWave 3s ease-in-out infinite alternate;
       }
+
       .border-two {
         height: 548px;
         left: 225px;
@@ -227,13 +159,7 @@
         width: 150px;
         top: 114px;
         left: 44px;
-        /* background: radial-gradient(
-          circle at center,
-          #ffffff 0%,
-          #f0f8ff 40%,
-          #cce7ff 80%,
-          rgba(0, 149, 255, 0.2) 100%
-        ); */
+
         background: #f0f8ff;
         border-radius: 50%;
 
@@ -244,36 +170,24 @@
       @keyframes moonPulse {
         0% {
           transform: scale(0.9);
-          /* box-shadow: 0 0 12px rgba(255, 255, 255, 0.6),
-              0 0 24px rgba(0, 180, 255, 0.4), 0 0 36px rgba(0, 120, 255, 0.2); */
         }
         50% {
           transform: scale(1);
-          /* box-shadow: 0 0 20px rgba(255, 255, 255, 0.7),
-              0 0 36px rgba(0, 180, 255, 0.5), 0 0 48px rgba(0, 120, 255, 0.3); */
         }
         100% {
           transform: scale(0.9);
-          /* box-shadow: 0 0 12px rgba(255, 255, 255, 0.6),
-              0 0 24px rgba(0, 180, 255, 0.4), 0 0 36px rgba(0, 120, 255, 0.2); */
         }
       }
 
       @keyframes sunPulse {
         0% {
           transform: scale(0.7);
-          /* box-shadow: 0 0 12px rgba(255, 255, 255, 0.6),
-              0 0 24px rgba(0, 180, 255, 0.4), 0 0 36px rgba(0, 120, 255, 0.2); */
         }
         50% {
           transform: scale(0.8);
-          /* box-shadow: 0 0 20px rgba(255, 255, 255, 0.7),
-              0 0 36px rgba(0, 180, 255, 0.5), 0 0 48px rgba(0, 120, 255, 0.3); */
         }
         100% {
           transform: scale(0.7);
-          /* box-shadow: 0 0 12px rgba(255, 255, 255, 0.6),
-              0 0 24px rgba(0, 180, 255, 0.4), 0 0 36px rgba(0, 120, 255, 0.2); */
         }
       }
 
@@ -312,11 +226,10 @@
 
       .moon-spike {
         position: absolute;
-        top: -12px;
-        left: 44px;
-
-        width: 17.25px;
-        height: 115px;
+        top: -18px;
+        left: 33px;
+        width: 16.25px;
+        height: 100px;
         background: #f0f8ff;
         z-index: 10;
         clip-path: polygon(50% 0, 100% 20%, 100% 80%, 50% 100%, 0% 80%, 0% 20%);
@@ -327,10 +240,7 @@
         left: 80px;
         z-index: 51;
         position: absolute;
-        animation: sunPulse 3s ease-in-out infinite;
-      }
-
-      .moon-wrapper {
+        animation: moonPulse 3s ease-in-out infinite;
       }
     </style>
   </head>
@@ -350,7 +260,6 @@
         </div>
 
         <div class="sun" id="sun"></div>
-        <!-- <img class="flag-img" src="nepal.png" /> -->
       </div>
     </div>
 
